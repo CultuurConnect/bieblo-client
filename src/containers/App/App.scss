@@ -1,0 +1,159 @@
+@import "../../theme/variables.scss";
+
+.login {
+  .appContent {
+    margin-left: 0;
+    background-color: #f5f7fa;
+    margin-top: 0;
+  }
+}
+
+.app {
+
+  &>nav {
+    background-color: #3fc0e8;
+  }
+
+  .brand {
+    position: absolute;
+    $size: 40px;
+    top: 5px;
+    left: 5px;
+    display: inline-block;
+    background: #2d2d2d url('../Home/logo.png') no-repeat center center;
+    width: $size;
+    height: $size;
+    background-size: 80%;
+    margin: 0 10px 0 0;
+    border-radius: $size / 2;
+  }
+  nav :global(.fa) {
+    font-size: 2em;
+    line-height: 20px;
+  }
+}
+
+.appNavbar {
+  background: $cyan;
+}
+
+.appSidebar {
+  position: absolute;
+  width: 220px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 116;
+  margin-top: 57px;
+
+  .appSidebarInner {
+    height: 100%;
+    width: 220px;
+    overflow: hidden;
+
+    .appSidebarInnerSidebar {
+      & > .appSidebarNav {
+        position: relative;
+      }
+    }
+  }
+}
+
+.appContent {
+  position: relative;
+  height: 100%;
+  margin-left: 220px;
+  z-index: 111;
+  background-color: #f5f7fa;
+  margin-bottom: 60px!important;
+  margin-top: 57px;
+}
+
+.appFooter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  border-top: 1px solid #e4eaec;
+  padding: 20px;
+  z-index: 109;
+  margin-left: 220px;
+}
+
+.appLoading {
+  height: 100%;
+  background: #0d85c5;
+  position: absolute;
+  z-index: 10000;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+
+  .loader {
+    font-size: 10px;
+    margin: 50px auto;
+    text-indent: -9999em;
+    width: 11em;
+    height: 11em;
+    border-radius: 50%;
+    background: #ffffff;
+    background: -moz-linear-gradient(left, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    background: -o-linear-gradient(left, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    background: -ms-linear-gradient(left, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    background: linear-gradient(to right, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    position: relative;
+    -webkit-animation: load3 1.4s infinite linear;
+    animation: load3 1.4s infinite linear;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  .loader:before {
+    width: 50%;
+    height: 50%;
+    background: #ffffff;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+  }
+  .loader:after {
+    background: #0d85c5;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  @-webkit-keyframes load3 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes load3 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
