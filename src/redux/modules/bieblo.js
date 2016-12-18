@@ -1,29 +1,29 @@
-const UPDATE_ILLUSTRATIONS = 'bieblo/bieblo/UPDATE_ILLUSTRATIONS';
+const UPDATE_ILLUSTRATIONS = 'bieblo/bieblo/UPDATE_ILLUSTRATIONS'
 
 // fisher-yates shuffle
 const shuffle = (array) => {
-  let temp = null;
+  let temp = null
   for (let i = array.length - 1; i > 0; i -= 1) {
-    const idx = Math.floor(Math.random() * (i + 1));
-    temp = array[i];
-    array[i] = array[idx];
-    array[idx] = temp;
+    const idx = Math.floor(Math.random() * (i + 1))
+    temp = array[i]
+    array[i] = array[idx]
+    array[idx] = temp
   }
-  return array;
-};
+  return array
+}
 
 const initialState = {
   library: null,
   age: null,
   libraries: [
-     {id: 1, naam: 'De krook', logo: 'https://pbs.twimg.com/profile_images/378800000041290325/01c214021ddc7ebc543087ce660e9fa3_400x400.png'}
+     {id: 1, naam: 'De krook', logo: 'https://pbs.twimg.com/profile_images/378800000041290325/01c214021ddc7ebc543087ce660e9fa3_400x400.png'},
   ],
   ages: [
     {id: 1, label: '7'},
     {id: 2, label: '8'},
     {id: 3, label: '9'},
     {id: 4, label: '10'},
-    {id: 5, label: '11'}
+    {id: 5, label: '11'},
   ],
   illustrations: shuffle(
     [
@@ -43,27 +43,30 @@ const initialState = {
   ).map(
     (item, idx) => ({
       ...item,
-      order: idx
+      order: idx,
     })
-  )
-};
+  ),
+}
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case UPDATE_ILLUSTRATIONS:
       return {
         ...state,
-        illustrations: action.illustrations
-      };
+        illustrations: action.illustrations,
+      }
     default:
-      return state;
+      return state
   }
 }
 
-export function updateIllustrations(illustrations) {
-  console.log('in updateIllustrations', illustrations);
-  return {
-    type: UPDATE_ILLUSTRATIONS,
-    illustrations
-  };
+const updateIllustrations = (illustrations) => ({
+  type: UPDATE_ILLUSTRATIONS,
+  illustrations,
+})
+
+export default reducer
+
+export {
+  updateIllustrations,
 }

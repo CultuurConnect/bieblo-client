@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import * as authActions from 'redux/modules/auth';
+import React, {Component, PropTypes} from 'react'
+import {connect} from 'react-redux'
+import * as authActions from 'redux/modules/auth'
 
 @connect(
     state => ({user: state.auth.user}),
@@ -9,11 +9,11 @@ export default
 class LoginSuccess extends Component {
   static propTypes = {
     user: PropTypes.object,
-    logout: PropTypes.func
+    logout: PropTypes.func,
   }
 
   render() {
-    const {user, logout} = this.props;
+    const {user, logout} = this.props
     return (user &&
       <div className="container">
         <h1>Login Success</h1>
@@ -33,6 +33,6 @@ class LoginSuccess extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

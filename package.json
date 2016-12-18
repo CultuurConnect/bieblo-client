@@ -90,6 +90,8 @@
     }
   },
   "dependencies": {
+    "animate-css-webpack": "^3.5.6",
+    "animate.css": "^3.5.2",
     "babel-core": "^6.5.2",
     "babel-loader": "^6.2.1",
     "babel-plugin-add-module-exports": "^0.1.2",
@@ -123,6 +125,7 @@
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",
     "react": "0.14.8",
+    "react-addons-css-transition-group": "^15.4.1",
     "react-bootstrap": "^0.28.1",
     "react-bootstrap-switch": "^15.0.3",
     "react-dom": "0.14.8",
@@ -136,6 +139,7 @@
     "redux-async-connect": "^1.0.0-rc2",
     "redux-form": "^3.0.12",
     "redux-thunk": "^2.1.0",
+    "reshake": "^1.0.6",
     "scroll-behavior": "^0.3.2",
     "serialize-javascript": "^1.1.2",
     "serve-favicon": "^2.3.0",

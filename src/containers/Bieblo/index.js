@@ -1,3 +1,3 @@
-export Ages from './Ages';
-export Libraries from './Libraries';
-export Illustrations from './Illustrations';
+export Ages from './Ages'
+export Libraries from './Libraries'
+export Illustrations from './Illustrations'

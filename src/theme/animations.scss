@@ -1,0 +1,9 @@
+@import "../../node_modules/animate.css/animate.css";
+
+.title-enter {
+  animation: 0.8s flipInX ease;
+}
+
+.title-leave {
+  animation: 0.5s flipOutX ease;
+}

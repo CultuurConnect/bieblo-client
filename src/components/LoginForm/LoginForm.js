@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import * as authActions from 'redux/modules/auth';
+import React, {Component, PropTypes} from 'react'
+import {connect} from 'react-redux'
+import * as authActions from 'redux/modules/auth'
 
 @connect(
   state => ({user: state.auth.user}),
@@ -10,19 +10,19 @@ export default class LoginForm extends Component {
   static propTypes = {
     user: PropTypes.object,
     login: PropTypes.func,
-    logout: PropTypes.func
+    logout: PropTypes.func,
   }
 
   handleSubmit = (event) => {
-    event.preventDefault();
-    const input = this.refs.username;
-    this.props.login(input.value);
-    input.value = '';
+    event.preventDefault()
+    const input = this.refs.username
+    this.props.login(input.value)
+    input.value = ''
   }
 
   render() {
-    const {user, logout} = this.props;
-    const styles = require('./LoginForm.scss');
+    const {user, logout} = this.props
+    const styles = require('./LoginForm.scss')
 
     return (
       <div className={styles.loginWrap}>
@@ -53,6 +53,6 @@ export default class LoginForm extends Component {
         </div>
         }
       </div>
-    );
+    )
   }
 }

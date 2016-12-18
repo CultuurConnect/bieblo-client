@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import Helmet from 'react-helmet';
-import {connect} from 'react-redux';
-import { LinkContainer } from 'react-router-bootstrap';
+import React, {Component, PropTypes} from 'react'
+import Helmet from 'react-helmet'
+import {connect} from 'react-redux'
+import { LinkContainer } from 'react-router-bootstrap'
 
-import * as tagsActions from 'redux/modules/tags';
+import * as tagsActions from 'redux/modules/tags'
 
 @connect(
   state => ({
@@ -15,12 +15,12 @@ import * as tagsActions from 'redux/modules/tags';
 export default class Widgets extends Component {
   static propTypes = {
     tags: PropTypes.array,
-    add: PropTypes.func.isRequired
+    add: PropTypes.func.isRequired,
   };
 
   render() {
-    const {tags, add} = this.props;
-    console.log('constant tags?', tags);
+    const {tags, add} = this.props
+    console.log('constant tags?', tags)
     return (
       <div>
         <h1>
@@ -30,8 +30,8 @@ export default class Widgets extends Component {
         <form className="form">
           <input type="text" ref="tag" placeholder="new tag"/>
           <button onClick={(event) => {
-            event.preventDefault();
-            add(this.refs.tag.value);
+            event.preventDefault()
+            add(this.refs.tag.value)
           }}>Add</button>
         </form>
         <hr/>
@@ -51,6 +51,6 @@ export default class Widgets extends Component {
           }
         </div>
       </div>
-    );
+    )
   }
 }

@@ -1,21 +1,21 @@
-import React from 'react';
-import styles from './Regions.scss';
+import React from 'react'
+import styles from './Regions.scss'
 
 const getNumSubRegions = (region) => {
-  return region.children.length;
-};
+  return region.children.length
+}
 
-const getCountChildLibraries = (count, region) => count + region.libraries.length;
+const getCountChildLibraries = (count, region) => count + region.libraries.length
 
 const getCountLibraries = (region) => {
-  let libraries = region.libraries.length;
+  let libraries = region.libraries.length
   if (region.children) {
-    libraries += region.children.reduce(getCountChildLibraries, 0);
+    libraries += region.children.reduce(getCountChildLibraries, 0)
   }
-  return libraries;
-};
+  return libraries
+}
 
-const renderDepth = (depth) => <div style={{display: 'inline-block', width: depth * 15}} />;
+const renderDepth = (depth) => <div style={{display: 'inline-block', width: depth * 15}} />
 
 const renderLibraries = (libraries, depth) => (
   <div>
@@ -30,7 +30,7 @@ const renderLibraries = (libraries, depth) => (
       )
     }
   </div>
-);
+)
 
 const renderSubRegions = (parentRegion, regions, depth, expandToggleSubRegion) => (
   <div>
@@ -50,7 +50,7 @@ const renderSubRegions = (parentRegion, regions, depth, expandToggleSubRegion) =
       )
     }
   </div>
-);
+)
 
 /**
  * @param regions
@@ -79,5 +79,5 @@ export const renderRegions = (regions, expandToggleRegion, expandToggleSubRegion
       )
     }
   </div>
-);
+)
 

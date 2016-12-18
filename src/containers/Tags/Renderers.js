@@ -1,5 +1,5 @@
-import React from 'react';
-const styles = require('./Regions.scss');
+import React from 'react'
+const styles = require('./Regions.scss')
 
 const renderSubRegions = (regions) => (
   <div>
@@ -14,7 +14,7 @@ const renderSubRegions = (regions) => (
       )
     }
   </div>
-);
+)
 
 export const renderRegions = (regions, expandToggleRegion) => (
   <div>
@@ -32,6 +32,6 @@ export const renderRegions = (regions, expandToggleRegion) => (
       )
     }
   </div>
-);
+)
 
 

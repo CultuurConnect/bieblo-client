@@ -3,12 +3,13 @@
  *
  */
 
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic|Shadows+Into+Light);
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic|Pacifico|Ubuntu+Mono);
 
 body {
   padding: 0 !important;
   font-family: Source Sans Pro,sans-serif;
   color: #656565;
+  overflow: hidden;
 
   a {
     border-bottom: none;
@@ -505,6 +506,124 @@ a.text-danger:focus, a.text-danger:hover {
   border-top-left-radius: 3px;
 }
 
+/**
+ Custom classes
+ */
 .written {
-  font-family: 'Shadows Into Light', cursive;
+  font-family: 'Pacifico', cursive;
 }
+
+.font-normal {
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.font-mono {
+  font-family: 'Ubuntu Mono', monospace !important;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.uppercaseFirst {
+  text-transform: capitalize;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.margin-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-color-blue {
+  color: #3498DB;
+}
+
+/**
+Nice buttons
+ */
+
+
+.action-button
+{
+  display: inline-block;
+  padding: 10px 40px;
+  margin: 0 10px 10px 0;
+  border-radius: 10px;
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  color: #FFF;
+  text-decoration: none;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+
+  &.medium {
+    font-size: 16px;
+    padding: 10px 30px;
+  }
+
+  &.small {
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+
+  &.blue
+  {
+    background-color: #3498DB;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0px -2px #2980B9;
+  }
+
+  &.red
+  {
+    background-color: #E74C3C;
+    border-bottom: 5px solid #BD3E31;
+    text-shadow: 0px -2px #BD3E31;
+  }
+
+  &.green
+  {
+    background-color: #82BF56;
+    border-bottom: 5px solid #669644;
+    text-shadow: 0px -2px #669644;
+  }
+
+  &.yellow
+  {
+    background-color: #F2CF66;
+    border-bottom: 5px solid #D1B358;
+    text-shadow: 0px -2px #D1B358;
+  }
+
+  &:active
+  {
+    transform: translate(0px,5px);
+    -webkit-transform: translate(0px,5px);
+    border-bottom: 1px solid;
+  }
+
+  &.icon {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    & > i {
+      font-size:1.5em;
+      position: relative;
+      top: 3px;
+      margin-right: 10px;
+    }
+
+    &.no-text > i {
+      margin-right: 0;
+    }
+  }
+}
+
+@import "animations";

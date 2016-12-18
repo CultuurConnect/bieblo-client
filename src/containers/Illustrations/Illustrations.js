@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import Helmet from 'react-helmet';
-import {connect} from 'react-redux';
-import {renderIllustrations} from './Renderers';
+import React, {Component, PropTypes} from 'react'
+import Helmet from 'react-helmet'
+import {connect} from 'react-redux'
+import {renderIllustrations} from './Renderers'
 
-import * as illustrationActions from 'redux/modules/illustrations';
+import * as illustrationActions from 'redux/modules/illustrations'
 
 @connect(
   state => ({
@@ -15,11 +15,11 @@ import * as illustrationActions from 'redux/modules/illustrations';
 export default class Widgets extends Component {
   static propTypes = {
     illustrations: PropTypes.array,
-    add: PropTypes.func.isRequired
+    add: PropTypes.func.isRequired,
   };
 
   render() {
-    const {illustrations} = this.props;
+    const {illustrations} = this.props
     return (
       <div>
         <h1>
@@ -36,6 +36,6 @@ export default class Widgets extends Component {
           </div>
         )}
       </div>
-    );
+    )
   }
 }

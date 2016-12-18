@@ -1,13 +1,15 @@
-import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import {reducer as reduxAsyncConnect} from 'redux-async-connect';
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
+import {reducer as reduxAsyncConnect} from 'redux-async-connect'
 
-import auth from './auth';
-import app from './app';
-import regions from './regions';
-import tags from './tags';
-import illustrations from './illustrations';
-import bieblo from './bieblo';
+import auth from './auth'
+import app from './app'
+import regions from './regions'
+import tags from './tags'
+import illustrations from './illustrations'
+import bieblo from './bieblo'
+import user from './user'
+import hallo from './hallo'
 
 export default combineReducers({
   routing: routerReducer,
@@ -17,5 +19,7 @@ export default combineReducers({
   regions,
   tags,
   illustrations,
-  bieblo
-});
+  bieblo,
+  user,
+  hallo,
+})

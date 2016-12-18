@@ -1,7 +1,7 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React from 'react'
+import {connect} from 'react-redux'
 
-import * as biebloActions from 'redux/modules/bieblo';
+import * as biebloActions from 'redux/modules/bieblo'
 
 @connect(
   state => ({
@@ -14,6 +14,6 @@ export default class Libraries extends React.Component {
   render() {
     return (
       <p>Libraries</p>
-    );
+    )
   }
 }

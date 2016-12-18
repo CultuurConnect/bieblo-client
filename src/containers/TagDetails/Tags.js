@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import Helmet from 'react-helmet';
-import {connect} from 'react-redux';
-import Switch from 'react-bootstrap-switch';
+import React, {Component, PropTypes} from 'react'
+import Helmet from 'react-helmet'
+import {connect} from 'react-redux'
+import Switch from 'react-bootstrap-switch'
 
-import * as tagsActions from 'redux/modules/tags';
+import * as tagsActions from 'redux/modules/tags'
 
 @connect(
   state => ({
@@ -19,16 +19,16 @@ export default class Widgets extends Component {
     params: PropTypes.Object,
     add: PropTypes.func.isRequired,
     toggleAge1: PropTypes.func.isRequired,
-    toggleAge2: PropTypes.func.isRequired
+    toggleAge2: PropTypes.func.isRequired,
   };
 
   render() {
-    const { params, query, tags, toggleAge1, toggleAge2 } = this.props;
-    const { tag } = params;
+    const { params, query, tags, toggleAge1, toggleAge2 } = this.props
+    const { tag } = params
 
-    const stateTag = tags.find((item) => item.label === tag);
+    const stateTag = tags.find((item) => item.label === tag)
 
-    console.log(stateTag);
+    console.log(stateTag)
 
     return (
       <div>
@@ -64,6 +64,6 @@ export default class Widgets extends Component {
           <button className="btn btn-primary">Opslaan</button>
         </div>
       </div>
-    );
+    )
   }
 }
