@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Shake } from 'reshake'
+// import { Shake } from 'reshake'
 
 import Keyboard, {DEFAULT_CHARACTERS} from '../../components/Keyboard'
 import * as userActions from 'redux/modules/user'
 import * as halloActions from 'redux/modules/hallo'
+import {nextAnimation} from './animations'
+
 
 @connect(
   state => ({
@@ -33,22 +34,16 @@ class halloComponent extends React.Component {
 
   render() {
     const {username, rendered, setUsername} = this.props
-    const logoClasses = `written align-center ${rendered ? '' : 'animated bounceInDown'}`
+    // const logoClasses = `written align-center ${rendered ? '' : 'animated bounceInDown'}`
+    const onClickNext = () => {
+      const {nextButton, keyboard} = this.refs
+      nextAnimation({
+        nextButton,
+        keyboard,
+      })
+    }
     return (
       <div className="container">
-        <Shake
-          h={4}
-          v={4}
-          r={2}
-          dur={450}
-          int={10}
-          max={100}
-          fixed
-          fixedStop={false}
-          freez={false}>
-          <h1 ref="logo" className={logoClasses} style={{fontSize: 60, marginTop: 25}}>Bieblo</h1>
-        </Shake>
-        <hr />
         <h2 className="written align-center animated bounceIn">Hallo daar! Wat is jouw naam?</h2>
         <div className="row">
           <div className="col-md-offset-4 col-md-4">
@@ -58,19 +53,19 @@ class halloComponent extends React.Component {
             </div>
           </div>
         </div>
-        <Keyboard
-          characters={DEFAULT_CHARACTERS}
-          value={username}
-          onUpdateValue={setUsername}
-          animated={!rendered}
-        />
+        <div ref="keyboard">
+          <Keyboard
+            characters={DEFAULT_CHARACTERS}
+            value={username}
+            onUpdateValue={setUsername}
+            animated={!rendered}
+          />
+        </div>
         <div className="row">
           <div className="align-center" style={{marginTop: 50}}>
-            <LinkContainer to="/leeftijd">
-              <div className="action-button blue icon">
-                <i className="fa fa-play-circle" /> Verder!
-              </div>
-            </LinkContainer>
+            <div ref="nextButton" className="action-button blue icon animated bounceInUp" onClick={onClickNext}>
+              <i className="fa fa-play-circle" /> Verder!
+            </div>
           </div>
         </div>
       </div>
