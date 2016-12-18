@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
+
 // import { Shake } from 'reshake'
 
 import Keyboard, {DEFAULT_CHARACTERS} from '../../components/Keyboard'
@@ -16,6 +18,7 @@ import {nextAnimation} from './animations'
   {
     ...userActions,
     ...halloActions,
+    openPath: (path) => push(path),
   }
 )
 
@@ -25,6 +28,7 @@ class halloComponent extends React.Component {
     rendered: React.PropTypes.bool,
     setUsername: React.PropTypes.func,
     setRendered: React.PropTypes.func,
+    openPath: React.PropTypes.func,
   }
 
   componentDidMount() {
@@ -33,20 +37,22 @@ class halloComponent extends React.Component {
   }
 
   render() {
-    const {username, rendered, setUsername} = this.props
-    // const logoClasses = `written align-center ${rendered ? '' : 'animated bounceInDown'}`
+    const {username, rendered, setUsername, openPath} = this.props
+
     const onClickNext = () => {
-      const {nextButton, keyboard} = this.refs
       nextAnimation({
-        nextButton,
-        keyboard,
+        ...this.refs,
+        username,
+        afterNextAnimationCallback: () => {
+          openPath('/leeftijd')
+        },
       })
     }
     return (
       <div className="container">
-        <h2 className="written align-center animated bounceIn">Hallo daar! Wat is jouw naam?</h2>
+        <h2 ref="title" className="written align-center animated bounceIn">Hallo daar! Wat is jouw naam?</h2>
         <div className="row">
-          <div className="col-md-offset-4 col-md-4">
+          <div ref="usernameContainer" className="col-md-offset-4 col-md-4">
             <div className="written align-center text-color-blue uppercaseFirst">
               <h3 style={{fontSize: '3em'}}>{username ? username : '...'}</h3>
               <hr style={{width: 100}}/>

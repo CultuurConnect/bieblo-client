@@ -6,6 +6,7 @@ import {
     NotFound,
     Bieblo,
     Hallo,
+    Age,
   } from './containers'
 
 export default () => {
@@ -14,7 +15,7 @@ export default () => {
       <IndexRoute component={Home}/>
       <Route path="hallo" component={Hallo} />
       <Route path="bieblo" component={Bieblo.Libraries} />
-      <Route path="leeftijd" component={Bieblo.Ages} />
+      <Route path="leeftijd" component={Age} />
       <Route path="bieblo/:library/:age" component={Bieblo.Illustrations} />
       <Route path="*" component={NotFound} status={404} />
     </Route>

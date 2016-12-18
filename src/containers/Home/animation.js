@@ -107,44 +107,6 @@ const addAnimationEventListener = (element) => {
   )
 }
 
-//
-// const executeStartAnimationStep = (element, startAnimationEndedCallback) => {
-//   const timeout = getAnimationAttribute(element, 'data-timeout', 1000)
-//   setTimeout(() => {
-//     const step = getAnimationAttribute(element, 'data-step', 1)
-//     switch (step) {
-//       case 1:
-//         hideAnimation(element, 2)
-//         break
-//       case 2:
-//         animationNoIdea(element)
-//         break
-//       case 3:
-//         hideAnimation(element, 4)
-//         break
-//       case 4:
-//         animationUseBieblo(element)
-//         break
-//       case 5:
-//         animationWobbleBieblo(element)
-//         break
-//       case 6:
-//         hideAnimation(element, 7, 'slideOutRight')
-//         break
-//       case 7:
-//         animationAndDiscover(element)
-//         break
-//       case 8:
-//         hideAnimation(element, 9)
-//         break
-//       default:
-//         startAnimationEndedCallback()
-//         break
-//     }
-//   }, timeout)
-// }
-
-
 const startAnimation = ({logo, startButton, animation, startAnimationEndedCallback}) => {
   homeAnimationState.running = false
   clearTimeout(homeAnimationState.timedOutEvent)

@@ -4,6 +4,8 @@ import Helmet from 'react-helmet'
 import config from '../../config'
 import { loaded } from 'redux/modules/app'
 import AppTitle from './AppTitle'
+import AppLoading from './AppLoading'
+import AppBackground from './AppBackground'
 
 @connect(
   state => ({
@@ -24,7 +26,7 @@ export default class App extends Component {
   componentDidMount() {
     const { pushAppLoaded } = this.props
     const setAppLoaded = () => { pushAppLoaded() }
-    setTimeout(setAppLoaded, 1000)
+    setTimeout(setAppLoaded, 100)
   }
 
   render() {
@@ -33,8 +35,9 @@ export default class App extends Component {
     return (
       <div>
         <Helmet {...config.app.head}/>
+        { !loading && <AppBackground /> }
         { !loading && path !== '/' && <AppTitle /> }
-        { !loading && children ? children : <div>Content</div> }
+        { !loading && children ? children : <AppLoading /> }
       </div>
     )
   }

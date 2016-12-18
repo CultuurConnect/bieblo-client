@@ -626,4 +626,19 @@ Nice buttons
   }
 }
 
+@keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+#appBackground {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-position: 0 0;
+  animation: animatedBackground 100s linear infinite;
+  opacity: 0.15;
+  left: 0;
+  top: 0;
+}
+
 @import "animations";
