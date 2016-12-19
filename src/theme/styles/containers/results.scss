@@ -1,0 +1,19 @@
+.results-list {
+
+  .results-row {
+    margin-bottom: 30px;
+
+    .result-wrapper {
+
+        .result {
+          height: 200px;
+          width: 150px;
+          margin: 0 auto;
+          background: #FFFFFF;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 100% auto;
+        }
+    }
+  }
+}

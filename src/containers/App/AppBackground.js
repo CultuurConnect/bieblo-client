@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AppLoading = () => {
-  const backgroundImg = require('./background.png')
+  const backgroundImg = require('./background_bw.png')
   const backgroundStyle = {
     backgroundImage: `url(${backgroundImg})`,
 

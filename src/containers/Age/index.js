@@ -41,9 +41,19 @@ class Ages extends React.Component {
     return (
       <div ref="contentWrap">
         <div className="row">
-          <h1 className="written align-center animated bounceInUp">
-            {username ? `Hoe oud ben je ${username}?` : 'Klik op jouw leeftijd!' }
-          </h1>
+        {
+          username
+            ? (
+              <h1 className="written align-center animated bounceInUp">
+                Hoe oud ben je, <span className="uppercaseFirst">{username}?</span>
+              </h1>
+            )
+            : (
+              <h1 className="written align-center animated bounceInUp">
+                Klik op jouw leeftijd!'
+              </h1>
+            )
+        }
         </div>
         <AgeList
           style={{marginTop: 10}}

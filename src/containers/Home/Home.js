@@ -59,7 +59,7 @@ export default class Home extends Component {
 
         <div className="container">
             <hr/>
-            <h2 className="font-mono align-center animated fadeIn" ref="animation">Opzoek naar een boek?</h2>
+            <h2 className="font-mono align-center animated fadeIn" ref="animation">Op zoek naar een boek?</h2>
         </div>
 
         <div className="action-button-container fixed-bottom align-center">

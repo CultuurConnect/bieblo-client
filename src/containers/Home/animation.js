@@ -5,7 +5,7 @@ const homeAnimationState = {
 
 const animationStart = (element) => {
   if (homeAnimationState.running) {
-    element.innerHTML = 'Opzoek naar een boek?'
+    element.innerHTML = 'Op zoek naar een boek?'
     element.className = 'font-mono align-center animated fadeIn'
     element.setAttribute('data-step', 1)
     element.setAttribute('data-timeout', 3000)
