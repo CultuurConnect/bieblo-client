@@ -4,9 +4,9 @@ import {
     App,
     Home,
     NotFound,
-    Bieblo,
     Hallo,
     Age,
+    Swipe,
   } from './containers'
 
 export default () => {
@@ -14,9 +14,8 @@ export default () => {
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="hallo" component={Hallo} />
-      <Route path="bieblo" component={Bieblo.Libraries} />
       <Route path="leeftijd" component={Age} />
-      <Route path="bieblo/:library/:age" component={Bieblo.Illustrations} />
+      <Route path="swipe" component={Swipe} />
       <Route path="*" component={NotFound} status={404} />
     </Route>
   )

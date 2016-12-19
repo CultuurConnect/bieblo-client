@@ -15,7 +15,7 @@ import {exitAnimation} from './animations'
   }),
   {
     ...userActions,
-    openPathIllustrations: () => push('/illustraties'),
+    openPathIllustrations: () => push('/swipe'),
   }
 )
 

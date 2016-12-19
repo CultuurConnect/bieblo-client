@@ -123,7 +123,7 @@ const handlePanEnd = (ev, illustrations, updateIllustrations) => {
   const illustrationObj = getFirstNewIllustration(illustrations)
   const illustrationEl = getFirstNewIllustrationEl(illustrations)
   if (illustrationEl) {
-    const style = require('./Bieblo.scss')
+    const style = require('./style.scss')
     const { x } = ev.center
     const xPosition = x + panState.offset
     const percentage = Math.ceil((xPosition / (panState.container.width * 3)) * 100)
@@ -150,7 +150,7 @@ const handlePanEnd = (ev, illustrations, updateIllustrations) => {
 }
 
 const renderIllustration = (illustrationObj) => {
-  const style = require('./Bieblo.scss')
+  const style = require('./style.scss')
   const {id, cls, img, label} = illustrationObj
   const imgStyleObj = {
     backgroundImage: `url(${img})`,
@@ -211,7 +211,7 @@ const sortOrder = (itemA, itemB) => itemA.order > itemB.order ? -1 : 1
   {...biebloActions}
 )
 
-export default class Illustrations extends React.Component {
+class Swipe extends React.Component {
 
   static propTypes = {
     illustrations: React.PropTypes.array,
@@ -239,15 +239,15 @@ export default class Illustrations extends React.Component {
   }
 
   render() {
-    const style = require('./Bieblo.scss')
+    const style = require('./style.scss')
     const { illustrations } = this.props
 
     const newItems = illustrations.filter(filterNew)
     const dislikeItems = illustrations.filter(filterLeft).sort(sortOrder)
     const likeItems = illustrations.filter(filterRight).sort(sortOrder)
 
-    const arrowLeuk = require('./../Swipe/wel_leuk.png')
-    const arrowNietLeuk = require('./../Swipe/niet_leuk.png')
+    const arrowLeuk = require('./wel_leuk.png')
+    const arrowNietLeuk = require('./niet_leuk.png')
 
     const styleLeft = {
       backgroundImage: `url(${arrowNietLeuk})`,
@@ -267,8 +267,6 @@ export default class Illustrations extends React.Component {
 
     return (
       <div ref="biebloWrapper" className={style.biebloWrapper}>
-        <h1 className={style.title}>Bieblo</h1>
-
         <div className={style.background} />
         {
           illustrations && illustrations.filter(filterNotNew).sort(sortOrder).map(renderIllustration)
@@ -291,7 +289,7 @@ export default class Illustrations extends React.Component {
               <em className="fa fa-4x fa-thumbs-o-down" />
             </div>
             {
-                dislikeItems && dislikeItems.map(item => <div className="col-md-3">{item.label}</div>)
+              dislikeItems && dislikeItems.map(item => <div className="col-md-3">{item.label}</div>)
             }
           </div>
           <div className="col-md-4">
@@ -310,3 +308,5 @@ export default class Illustrations extends React.Component {
     )
   }
 }
+
+export default Swipe
