@@ -1,0 +1,68 @@
+.swipe-wrapper {
+  max-width: 1024px;
+  min-height: 600px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+
+  .theme {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    background: white;
+    transform: none;
+    transform-origin: 50% 50% 0;
+    left: 50%;
+    margin-left: -125px;
+
+    &.disliked {
+      transform: scale(0.80) rotate3d(1, 0, 0, 75deg) skewX(20deg) skewY(-20deg);
+      transform-origin: bottom right;
+      left: 0;
+      margin-left: 125px;
+    }
+
+    &.liked {
+      transform: scale(0.80) rotate3d(1, 0, 0, 75deg) skewX(-20deg) skewY(20deg);
+      transform-origin: bottom left;
+      right: 0;
+      left: initial;
+      margin-right: 125px;
+    }
+
+    .image {
+      width: 100%;
+      margin: 15px auto;
+      height: 80%;
+      background-size: 100% auto;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    .label {
+      font-size: 30px;
+      text-align: center;
+      font-family: 'Shadows Into Light', cursive;
+    }
+  }
+
+  .title {
+    font-size: 88px;
+    margin: 0 0 20px 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Shadows Into Light', cursive;
+  }
+
+  .like {
+    position: absolute;
+    bottom: 0;
+    right: 150px;
+  }
+
+  .dislike {
+    position: absolute;
+    bottom: 0;
+    left: 150px;
+  }
+}
