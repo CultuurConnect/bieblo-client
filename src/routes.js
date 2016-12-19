@@ -7,6 +7,7 @@ import {
     Hallo,
     Age,
     Swipe,
+    Results,
   } from './containers'
 
 export default () => {
@@ -16,6 +17,7 @@ export default () => {
       <Route path="hallo" component={Hallo} />
       <Route path="leeftijd" component={Age} />
       <Route path="swipe" component={Swipe} />
+      <Route path="resultaten" component={Results} />
       <Route path="*" component={NotFound} status={404} />
     </Route>
   )

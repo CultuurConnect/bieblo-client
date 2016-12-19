@@ -1,7 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {push} from 'react-router-redux'
 
 import * as biebloActions from 'redux/modules/bieblo'
+
+const MAX_SWIPE_LIKE = 3
 
 const panState = {
   started: false,
@@ -58,9 +61,15 @@ const handlePanStart = (ev) => {
 const handlePanLeft = (distance, illustrations) => {
   const illustrationEl = getFirstNewIllustrationEl(illustrations)
   if (illustrationEl) {
-    const {width} = panState.container
-    if (distance <= (width / 2)) {
-      illustrationEl.style.left = `${(width - distance)}px`
+    const perc = distance < 250 ? (distance / 250) * 100 : 100
+
+    const left = 50 - (perc / 2)
+    const marginLeft = -125 + (125 * (perc / 100) * 2)
+
+    illustrationEl.style.left = `${left}%`
+    illustrationEl.style.marginLeft = `${marginLeft}px`
+
+    if (distance <= (250 / 2)) {
       illustrationEl.style.transform = null
     } else {
       let percentage = distance / panState.container.width
@@ -71,9 +80,8 @@ const handlePanLeft = (distance, illustrations) => {
       const skew = 20 * percentage
       const scale = 1 - (0.20 * percentage)
       const degree = 75 * percentage
-      illustrationEl.style['transform-origin'] = (distance <= width) ? `${origin}% bottom` : 'bottom right'
+      illustrationEl.style['transform-origin'] = (distance <= 250) ? `${origin}% bottom` : 'bottom right'
       illustrationEl.style.transform = `scale(${scale}) rotate3d(1,0,0,${degree}deg) skewX(${skew}deg) skewY(-${skew}deg)`
-      illustrationEl.style.left = (distance <= width) ? `${(width - distance)}px` : 0
     }
   }
 }
@@ -81,23 +89,27 @@ const handlePanLeft = (distance, illustrations) => {
 const handlePanRight = (distance, illustrations) => {
   const illustrationEl = getFirstNewIllustrationEl(illustrations)
   if (illustrationEl) {
-    const {width} = panState.container
-    const {center} = panState.x
-    if (distance <= (width / 4)) {
-      illustrationEl.style.left = `${(center + distance)}px`
+    const perc = distance < 250 ? (distance / 250) * 100 : 100
+
+    const right = (perc / 2)
+    const marginRight = -(125 - (125 * (perc / 100) * 2))
+
+    illustrationEl.style.right = `${right}%`
+    illustrationEl.style.marginLeft = `${marginRight}px`
+
+    const width = 250
+
+    if (distance <= (width / 2)) {
       illustrationEl.style.transform = null
     } else {
-      let percentage = distance / panState.container.width
-      if (percentage > 1) {
-        percentage = 1
-      }
+      const percentage = perc / 100
+
       const origin = Math.round(percentage * 100)
       const skew = 20 * percentage
       const scale = 1 - (0.20 * percentage)
       const degree = 75 * percentage
-      illustrationEl.style['transform-origin'] = (distance <= width) ? `${origin}% bottom` : 'bottom left'
+      illustrationEl.style['transform-origin'] = (distance <= width) ? `-${origin}% bottom` : 'bottom left'
       illustrationEl.style.transform = `scale(${scale}) rotate3d(1,0,0,${degree}deg) skewX(-${skew}deg) skewY(${skew}deg)`
-      illustrationEl.style.left = (distance <= width) ? `${(center + (distance / 2))}px` : (width * 2)
     }
   }
 }
@@ -119,7 +131,7 @@ const handlePanMove = (ev, illustrations) => {
   }
 }
 
-const handlePanEnd = (ev, illustrations, updateIllustrations) => {
+const handlePanEnd = (ev, illustrations, updateIllustrations, goPathResults) => {
   const illustrationObj = getFirstNewIllustration(illustrations)
   const illustrationEl = getFirstNewIllustrationEl(illustrations)
   if (illustrationEl) {
@@ -133,12 +145,22 @@ const handlePanEnd = (ev, illustrations, updateIllustrations) => {
       illustrationEl.style = null
       const newIllustrations = changeIllustrationCls(illustrationObj.id, 'left', illustrations)
       updateIllustrations(newIllustrations)
+      if (![...newIllustrations].filter(el => el.cls === 'new').length) {
+        goPathResults()
+      }
     } else if (percentage >= 75) {
       // To the right
       illustrationEl.className = style.illustration + ' ' + style.right
       illustrationEl.style = null
       const newIllustrations = changeIllustrationCls(illustrationObj.id, 'right', illustrations)
       updateIllustrations(newIllustrations)
+      if (
+        [...newIllustrations].filter(el => el.cls === 'right').length >= MAX_SWIPE_LIKE
+        ||
+        ![...newIllustrations].filter(el => el.cls === 'new').length
+      ) {
+        goPathResults()
+      }
     } else {
       // reset
       illustrationEl.style = null
@@ -167,10 +189,10 @@ const renderIllustration = (illustrationObj) => {
   )
 }
 
-const initWindow = (wrapper) => {
+const initWindow = () => {
   const innerW = window.innerWidth
   const centerX = innerW / 2
-  const containerW = wrapper.clientWidth / 3
+  const containerW = 250
   panState.container = {
     ...panState.container,
     width: containerW,
@@ -208,7 +230,10 @@ const sortOrder = (itemA, itemB) => itemA.order > itemB.order ? -1 : 1
   state => ({
     illustrations: state.bieblo.illustrations,
   }),
-  {...biebloActions}
+  {
+    ...biebloActions,
+    goPathResults: () => push('/resultaten'),
+  }
 )
 
 class Swipe extends React.Component {
@@ -216,10 +241,11 @@ class Swipe extends React.Component {
   static propTypes = {
     illustrations: React.PropTypes.array,
     updateIllustrations: React.PropTypes.func.isRequired,
+    goPathResults: React.PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    const {illustrations, updateIllustrations} = this.props
+    const {illustrations, updateIllustrations, goPathResults} = this.props
     const wrapper = this.refs.biebloWrapper
     initWindow(wrapper)
     const Hammer = require('hammerjs')
@@ -234,7 +260,7 @@ class Swipe extends React.Component {
     )
     // noinspection JSUnresolvedFunction
     mc.on('panend',
-      (ev) => handlePanEnd(ev, illustrations, updateIllustrations)
+      (ev) => handlePanEnd(ev, illustrations, updateIllustrations, goPathResults)
     )
   }
 
