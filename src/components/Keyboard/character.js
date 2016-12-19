@@ -8,8 +8,6 @@ const renderCharacterKey = (character, value, onUpdateValue, animated) => {
   const animations = ['bounceInDown', 'bounceInUp', 'bounceInLeft', 'bounceInRight']
   const animation = animated ? `animated ${animations[Math.floor(Math.random() * animations.length)]}` : ''
 
-  console.log('animated???', animated)
-
   return (
     <div
       key={`char-${character}`}

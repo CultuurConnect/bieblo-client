@@ -32,7 +32,7 @@ const getAgeLinesFromAgeList = (agesList) => {
   return ageLines
 }
 
-const AgesList = ({agesList, onAgeClick, style}) => {
+const AgesList = ({agesList, onAgeButtonClick, style}) => {
   const ageLines = getAgeLinesFromAgeList(agesList)
   return (
     <div className="ageList" style={style}>
@@ -42,7 +42,7 @@ const AgesList = ({agesList, onAgeClick, style}) => {
             <AgesLine
               key={`ageLine-${idx}`}
               ages={ageLine}
-              onAgeClick={onAgeClick}
+              onAgeButtonClick={onAgeButtonClick}
             />
         )
       }

@@ -1,28 +1,45 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { push } from 'react-router-redux'
+
 import AgeList from './AgesList'
 
-import * as biebloActions from 'redux/modules/bieblo'
+import * as userActions from 'redux/modules/user'
+import {exitAnimation} from './animations'
+
 
 @connect(
   state => ({
     username: state.user.username,
     agesList: state.user.agesList,
   }),
-  {...biebloActions}
+  {
+    ...userActions,
+    openPathIllustrations: () => push('/illustraties'),
+  }
 )
 
 class Ages extends React.Component {
   static propTypes = {
     username: React.PropTypes.string,
     agesList: React.PropTypes.arrayOf(React.PropTypes.object),
+    setAgeGroup: React.PropTypes.func,
+    openPathIllustrations: React.PropTypes.func,
   }
 
   render() {
-    const {username, agesList} = this.props
-    console.log('render()', agesList)
+    const {username, agesList, setAgeGroup, openPathIllustrations} = this.props
+    const onAgeButtonClick = (age) => {
+      const {ageGroup} = age
+      setAgeGroup(ageGroup)
+      exitAnimation({
+        ...this.refs,
+        animationEndCallback: openPathIllustrations,
+      })
+    }
+
     return (
-      <div>
+      <div ref="contentWrap">
         <div className="row">
           <h1 className="written align-center animated bounceInUp">
             {username ? `Hoe oud ben je ${username}?` : 'Klik op jouw leeftijd!' }
@@ -31,6 +48,7 @@ class Ages extends React.Component {
         <AgeList
           style={{marginTop: 10}}
           agesList={agesList}
+          onAgeButtonClick={onAgeButtonClick}
         />
       </div>
     )

@@ -550,6 +550,16 @@ a.text-danger:focus, a.text-danger:hover {
 Nice buttons
  */
 
+.action-button-container {
+  min-height: 70px;
+
+  &.fixed-bottom {
+    position: fixed;
+    bottom: 80px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
 
 .action-button
 {

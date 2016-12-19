@@ -49,29 +49,29 @@ class halloComponent extends React.Component {
       })
     }
     return (
-      <div className="container">
-        <h2 ref="title" className="written align-center animated bounceIn">Hallo daar! Wat is jouw naam?</h2>
-        <div className="row">
-          <div ref="usernameContainer" className="col-md-offset-4 col-md-4">
-            <div className="written align-center text-color-blue uppercaseFirst">
-              <h3 style={{fontSize: '3em'}}>{username ? username : '...'}</h3>
-              <hr style={{width: 100}}/>
+      <div>
+        <div className="container">
+          <h2 ref="title" className="written align-center animated bounceIn">Hallo daar! Wat is jouw naam?</h2>
+          <div className="row">
+            <div ref="usernameContainer" className="col-md-offset-4 col-md-4">
+              <div className="written align-center text-color-blue uppercaseFirst">
+                <h3 style={{fontSize: '3em'}}>{username ? username : '...'}</h3>
+                <hr style={{width: 100}}/>
+              </div>
             </div>
           </div>
+          <div ref="keyboard">
+            <Keyboard
+              characters={DEFAULT_CHARACTERS}
+              value={username}
+              onUpdateValue={setUsername}
+              animated={!rendered}
+            />
+          </div>
         </div>
-        <div ref="keyboard">
-          <Keyboard
-            characters={DEFAULT_CHARACTERS}
-            value={username}
-            onUpdateValue={setUsername}
-            animated={!rendered}
-          />
-        </div>
-        <div className="row">
-          <div className="align-center" style={{marginTop: 50}}>
-            <div ref="nextButton" className="action-button blue icon animated bounceInUp" onClick={onClickNext}>
-              <i className="fa fa-play-circle" /> Verder!
-            </div>
+        <div className="action-button-container fixed-bottom align-center">
+          <div ref="nextButton" className="action-button blue icon animated bounceInUp" onClick={onClickNext}>
+            <i className="fa fa-play-circle" /> Verder!
           </div>
         </div>
       </div>

@@ -62,7 +62,7 @@ export default class Home extends Component {
             <h2 className="font-mono align-center animated fadeIn" ref="animation">Opzoek naar een boek?</h2>
         </div>
 
-        <div className="align-center" style={{marginTop: 50}}>
+        <div className="action-button-container fixed-bottom align-center" style={{marginTop: 50}}>
           <div ref="startButton" className="action-button blue icon" onClick={onClickStart}>
             <i className="fa fa-play-circle" /> Start!
           </div>
