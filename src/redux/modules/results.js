@@ -4,6 +4,7 @@ const LOAD_SUCCESS = 'bieblo/results/LOAD_SUCCESS'
 const LOAD_FAIL = 'bieblo/results/LOAD_FAIL'
 const SET_DETAILS = 'bieblo/results/SET_DETAILS'
 const REMOVE_DETAILS = 'bieblo/results/REMOVE_DETAILS'
+const REFRESH = 'bieblo/results/REFRESH'
 
 const initialState = {
   loaded: false,
@@ -39,6 +40,13 @@ const reducer = (state = initialState, action = {}) => {
         data: [],
         error: action.error,
       }
+    case REFRESH:
+      const newData = [...state.data]
+      newData.reverse()
+      return {
+        ...state,
+        data: newData,
+      }
     case RESET:
       return {
         ...initialState,
@@ -57,6 +65,8 @@ const reducer = (state = initialState, action = {}) => {
       return state
   }
 }
+
+const refresh = () => ({ type: REFRESH })
 
 const reset = () => ({ type: RESET })
 
@@ -80,4 +90,5 @@ export {
   reset,
   setDetails,
   removeDetails,
+  refresh,
 }

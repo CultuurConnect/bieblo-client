@@ -5,7 +5,7 @@ import { push } from 'react-router-redux'
 import {reset as resetUser} from '../../redux/modules/user'
 import {reset as resetBieblo} from '../../redux/modules/bieblo'
 import {reset as resetHallo} from '../../redux/modules/hallo'
-import {reset as resetResults, load, setDetails, removeDetails} from '../../redux/modules/results'
+import {reset as resetResults, load, setDetails, removeDetails, refresh} from '../../redux/modules/results'
 
 import BackButton from './BackButton'
 import RefreshButton from './RefreshButton'
@@ -34,6 +34,7 @@ const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small
     doLoad: (ageGroup, themesLiked) => load(ageGroup, themesLiked),
     doShowDetails: (result) => setDetails(result),
     doRemoveDetails: () => removeDetails(),
+    doRefresh: () => refresh(),
   }
 )
 
@@ -50,6 +51,7 @@ class ResultsContainer extends React.Component {
     doResetHallo: React.PropTypes.func,
     doResetResults: React.PropTypes.func,
     doResultRefresh: React.PropTypes.func,
+    doRefresh: React.PropTypes.func,
     goPathHome: React.PropTypes.func,
     doLoad: React.PropTypes.func,
     doShowDetails: React.PropTypes.func,
@@ -63,7 +65,7 @@ class ResultsContainer extends React.Component {
   }
 
   render() {
-    const {loaded, loading, details, doShowDetails, doRemoveDetails, doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome, resultsList} = this.props
+    const {loaded, loading, details, doRefresh, doShowDetails, doRemoveDetails, doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome, resultsList} = this.props
 
     const doReset = () => {
       doResetUser()
@@ -86,8 +88,6 @@ class ResultsContainer extends React.Component {
       textAlign: 'center',
     }
 
-    console.log('details?', details)
-
     return (
       <div>
         { !loaded && (<div style={loadingStyle} />)}
@@ -102,6 +102,7 @@ class ResultsContainer extends React.Component {
 
             <div className="action-button-container fixed-bottom align-center">
               <RefreshButton
+                doRefresh={doRefresh}
               />
               <RestartButton
                 doReset={doReset}

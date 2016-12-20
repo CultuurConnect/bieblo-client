@@ -1,9 +1,8 @@
 import React from 'react'
 
-const RefreshButton = ({doReset, goPathHome}) => {
+const RefreshButton = ({doRefresh}) => {
   const onClick = () => {
-    doReset()
-    goPathHome()
+    doRefresh()
   }
 
   return (
