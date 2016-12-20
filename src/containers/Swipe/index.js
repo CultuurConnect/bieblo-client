@@ -160,7 +160,7 @@ const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPath
         : themesDisliked
       setThemes(newThemes, newThemesLiked, newThemesDisliked)
 
-      if (newThemesLiked.length >= MAX_SWIPE_LIKE) {
+      if (newThemesLiked.length >= MAX_SWIPE_LIKE || !newThemes.length) {
         goPathResults()
       }
     }
