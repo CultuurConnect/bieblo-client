@@ -11,7 +11,6 @@ const getResultsRowsFromResults = (resultsList) => {
   while (resultsListCopy.length && resultsRows.length < MAX_ROWS) {
     const resultRow = []
     while (resultsListCopy.length && resultRow.length < MAX_ITEMS_ROW) {
-      console.log('in my while...')
       const randomIdx = Math.floor(Math.random() * resultsListCopy.length)
       resultRow.push({
         ...resultsListCopy[randomIdx],
@@ -26,8 +25,6 @@ const getResultsRowsFromResults = (resultsList) => {
 
 const ResultsList = ({resultsList}) => {
   const resultsRows = getResultsRowsFromResults(resultsList)
-  console.log('resultsList?', resultsList)
-  console.log('resultRows?', resultsRows)
 
   return (
     <div className="results-list">

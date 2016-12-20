@@ -5,7 +5,7 @@ import { push } from 'react-router-redux'
 import {reset as resetUser} from '../../redux/modules/user'
 import {reset as resetBieblo} from '../../redux/modules/bieblo'
 import {reset as resetHallo} from '../../redux/modules/hallo'
-import {reset as resetResults} from '../../redux/modules/results'
+import {reset as resetResults, load} from '../../redux/modules/results'
 
 import RefreshButton from './RefreshButton'
 import RestartButton from './RestartButton'
@@ -14,8 +14,12 @@ import ResultsList from './ResultsList'
 @connect(
   state => ({
     username: state.user.username,
+    ageGroup: state.user.ageGroup,
     rendered: state.hallo.rendered,
-    results: state.bieblo.results,
+    themesLiked: state.bieblo.themesLiked,
+    loaded: state.results.loaded,
+    loading: state.results.loading,
+    resultsList: state.results.data,
   }),
   {
     doResetUser: () => resetUser(),
@@ -23,12 +27,17 @@ import ResultsList from './ResultsList'
     doResetHallo: () => resetHallo(),
     doResetResults: () => resetResults(),
     goPathHome: () => push('/'),
+    doLoad: (ageGroup, themesLiked) => load(ageGroup, themesLiked),
   }
 )
 
 class ResultsContainer extends React.Component {
   static propTypes = {
-    resultList: React.PropTypes.arrayOf(React.PropTypes.object),
+    loaded: React.PropTypes.bool,
+    loading: React.PropTypes.bool,
+    ageGroup: React.PropTypes.number,
+    themesLiked: React.PropTypes.arrayOf(React.PropTypes.object),
+    resultsList: React.PropTypes.arrayOf(React.PropTypes.object),
     username: React.PropTypes.string,
     doResetUser: React.PropTypes.func,
     doResetBieblo: React.PropTypes.func,
@@ -36,28 +45,17 @@ class ResultsContainer extends React.Component {
     doResetResults: React.PropTypes.func,
     doResultRefresh: React.PropTypes.func,
     goPathHome: React.PropTypes.func,
+    doLoad: React.PropTypes.func,
+  }
+
+  componentDidMount() {
+    const {doLoad, ageGroup, themesLiked} = this.props
+    doLoad(ageGroup, themesLiked)
   }
 
   render() {
-    const {doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome} = this.props
+    const {loaded, loading, doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome, resultsList} = this.props
 
-    const resultsList = [
-      {id: 1, label: 'dmlkfj', cover: 'http://webservices.bibliotheek.be/index.php?func=cover&ISBN=9789045900698&VLACCnr=2753863&CDR=&EAN=&ISMN=&coversize=small'},
-      {id: 2, label: 'ateast'},
-      {id: 3, label: 'teasdfst'},
-      {id: 4, label: 'test'},
-      {id: 5, label: 'tsdfest'},
-      {id: 6, label: 'teqazsst'},
-      {id: 7, label: 'tesdfst'},
-      {id: 8, label: 'test'},
-      {id: 9, label: 'tsdfest'},
-      {id: 10, label: 'tefdsfst'},
-      {id: 11, label: 'test'},
-      {id: 12, label: 'tsdest'},
-      {id: 13, label: 'test'},
-      {id: 14, label: 'tefsdst'},
-      {id: 15, label: 'tefdsst'},
-    ]
     const doReset = () => {
       doResetUser()
       doResetBieblo()
@@ -65,22 +63,42 @@ class ResultsContainer extends React.Component {
       doResetResults()
     }
 
+    const loadingSVG = require('./../App/loading.svg')
+    const loadingStyle = {
+      height: 150,
+      width: 300,
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      margin: '-75px 0 0 -150px',
+      backgroundImage: `url(${loadingSVG})`,
+      backgroundPosition: '50% 50%',
+      backgroundRepeat: 'no-repeat',
+      textAlign: 'center',
+    }
+
     return (
       <div>
-        <div className="container">
-          <ResultsList
-            resultsList={resultsList}
-          />
-        </div>
+        { !loaded && (<div style={loadingStyle} />)}
+        { loaded && (
+          <div>
+            <div className="container">
+              <ResultsList
+                resultsList={resultsList}
+              />
+            </div>
 
-        <div className="action-button-container fixed-bottom align-center">
-          <RefreshButton
-          />
-          <RestartButton
-            doReset={doReset}
-            goPathHome={goPathHome}
-          />
-        </div>
+            <div className="action-button-container fixed-bottom align-center">
+              <RefreshButton
+              />
+              <RestartButton
+                doReset={doReset}
+                goPathHome={goPathHome}
+              />
+            </div>
+            <p>{loading ? 'Loading...' : ''}</p>
+          </div>
+        )}
       </div>
     )
   }

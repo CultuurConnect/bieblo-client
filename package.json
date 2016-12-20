@@ -124,6 +124,7 @@
     "multireducer": "^2.0.0",
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",
+    "query-string": "^4.2.3",
     "react": "0.14.8",
     "react-addons-css-transition-group": "^15.4.1",
     "react-bootstrap": "^0.28.1",

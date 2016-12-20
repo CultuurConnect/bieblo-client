@@ -260,7 +260,6 @@ class Swipe extends React.Component {
     const style = require('./style.scss')
     const {themes, themesLiked, themesDisliked, setThemes, goPathResults} = this.props
 
-    console.log('%cNEW RENDER', 'background:black; color:white', themes)
     const arrowLeuk = require('./wel_leuk.png')
     const arrowNietLeuk = require('./niet_leuk.png')
 
@@ -306,20 +305,14 @@ class Swipe extends React.Component {
               <div className="col-md-12" style={{textAlign: 'center'}}>
                 <em className="fa fa-4x fa-thumbs-o-down" />
               </div>
-              {
-                themesDisliked && themesDisliked.map(item => <div className="col-md-3">{item.label}</div>)
-              }
             </div>
             <div className="col-md-4">
-              <p>Slepen...</p>
+              <p>&nbsp;</p>
             </div>
             <div className="col-md-4">
               <div className="col-md-12" style={{textAlign: 'center'}}>
                 <em className="fa fa-4x fa-thumbs-o-up" />
               </div>
-              {
-                themesLiked && themesLiked.map(item => <div className="col-md-3">{item.label}</div>)
-              }
             </div>
           </div>
         </div>
