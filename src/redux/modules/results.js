@@ -2,12 +2,15 @@ const RESET = 'bieblo/results/RESET'
 const LOAD = 'bieblo/results/LOAD'
 const LOAD_SUCCESS = 'bieblo/results/LOAD_SUCCESS'
 const LOAD_FAIL = 'bieblo/results/LOAD_FAIL'
+const SET_DETAILS = 'bieblo/results/SET_DETAILS'
+const REMOVE_DETAILS = 'bieblo/results/REMOVE_DETAILS'
 
 const initialState = {
   loaded: false,
   loading: false,
   displayedResults: [],
   data: [],
+  details: null,
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -40,12 +43,26 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...initialState,
       }
+    case SET_DETAILS:
+      return {
+        ...state,
+        details: action.details,
+      }
+    case REMOVE_DETAILS:
+      return {
+        ...state,
+        details: null,
+      }
     default:
       return state
   }
 }
 
 const reset = () => ({ type: RESET })
+
+const setDetails = (details) => ({ type: SET_DETAILS, details })
+
+const removeDetails = () => ({ type: REMOVE_DETAILS })
 
 const load = (ageGroup, likes) => {
   let query = `ageGroup=${ageGroup}&`
@@ -61,4 +78,6 @@ export default reducer
 export {
   load,
   reset,
+  setDetails,
+  removeDetails,
 }

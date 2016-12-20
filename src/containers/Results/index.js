@@ -5,11 +5,14 @@ import { push } from 'react-router-redux'
 import {reset as resetUser} from '../../redux/modules/user'
 import {reset as resetBieblo} from '../../redux/modules/bieblo'
 import {reset as resetHallo} from '../../redux/modules/hallo'
-import {reset as resetResults, load} from '../../redux/modules/results'
+import {reset as resetResults, load, setDetails, removeDetails} from '../../redux/modules/results'
 
+import BackButton from './BackButton'
 import RefreshButton from './RefreshButton'
 import RestartButton from './RestartButton'
 import ResultsList from './ResultsList'
+
+const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small', 'coversize=large') : ''
 
 @connect(
   state => ({
@@ -20,6 +23,7 @@ import ResultsList from './ResultsList'
     loaded: state.results.loaded,
     loading: state.results.loading,
     resultsList: state.results.data,
+    details: state.results.details,
   }),
   {
     doResetUser: () => resetUser(),
@@ -28,6 +32,8 @@ import ResultsList from './ResultsList'
     doResetResults: () => resetResults(),
     goPathHome: () => push('/'),
     doLoad: (ageGroup, themesLiked) => load(ageGroup, themesLiked),
+    doShowDetails: (result) => setDetails(result),
+    doRemoveDetails: () => removeDetails(),
   }
 )
 
@@ -46,6 +52,9 @@ class ResultsContainer extends React.Component {
     doResultRefresh: React.PropTypes.func,
     goPathHome: React.PropTypes.func,
     doLoad: React.PropTypes.func,
+    doShowDetails: React.PropTypes.func,
+    doRemoveDetails: React.PropTypes.func,
+    details: React.PropTypes.object,
   }
 
   componentDidMount() {
@@ -54,7 +63,7 @@ class ResultsContainer extends React.Component {
   }
 
   render() {
-    const {loaded, loading, doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome, resultsList} = this.props
+    const {loaded, loading, details, doShowDetails, doRemoveDetails, doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome, resultsList} = this.props
 
     const doReset = () => {
       doResetUser()
@@ -77,14 +86,17 @@ class ResultsContainer extends React.Component {
       textAlign: 'center',
     }
 
+    console.log('details?', details)
+
     return (
       <div>
         { !loaded && (<div style={loadingStyle} />)}
-        { loaded && (
+        { loaded && !details && (
           <div>
             <div className="container">
               <ResultsList
                 resultsList={resultsList}
+                doShowDetails={doShowDetails}
               />
             </div>
 
@@ -97,6 +109,34 @@ class ResultsContainer extends React.Component {
               />
             </div>
             <p>{loading ? 'Loading...' : ''}</p>
+          </div>
+        )}
+        { loaded && details && (
+          <div>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-4">
+                  <img className="animated bounceInDown" src={changeCoverSizeToLarge(details.cover)} />
+                </div>
+                <div className="col-md-8">
+                  <div className="animated lightSpeedIn">
+                    <h3 className="animated">{details.title}</h3>
+                    <h4>{details.author}</h4>
+                    <hr/>
+                    <p>{details.summary}</p>
+                    <hr/>
+                    <h5>Waar vind je dit boek?</h5>
+                    <p>{details.subloc}</p>
+                    <p>{details.shelfmark}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="action-button-container fixed-bottom align-center">
+              <BackButton
+                doRemoveDetails={doRemoveDetails}
+              />
+            </div>
           </div>
         )}
       </div>

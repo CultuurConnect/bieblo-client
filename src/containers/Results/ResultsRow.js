@@ -2,7 +2,7 @@ import React from 'react'
 
 import Result from './Result'
 
-const ResultsRow = ({resultRow}) => {
+const ResultsRow = ({resultRow, doShowDetails}) => {
   const colWidth = Math.floor(12 / resultRow.length)
 
   return (
@@ -14,6 +14,7 @@ const ResultsRow = ({resultRow}) => {
               key={`result-${result.id}`}
               result={result}
               colWidth={colWidth}
+              doShowDetails={doShowDetails}
             />
         )
       }

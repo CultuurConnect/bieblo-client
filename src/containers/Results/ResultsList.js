@@ -23,7 +23,7 @@ const getResultsRowsFromResults = (resultsList) => {
   return resultsRows
 }
 
-const ResultsList = ({resultsList}) => {
+const ResultsList = ({resultsList, doShowDetails}) => {
   const resultsRows = getResultsRowsFromResults(resultsList)
 
   return (
@@ -34,6 +34,7 @@ const ResultsList = ({resultsList}) => {
             <ResultsRow
               key={`results-row-${idx}`}
               resultRow={resultRow}
+              doShowDetails={doShowDetails}
             />
         )
       }
