@@ -30,7 +30,7 @@ export default class Home extends Component {
 
     const onClickStart = () => {
       const startAnimationEndedCallback = () => {
-        dispatch(push('/hallo'))
+        dispatch(push('/leeftijd'))
       }
       const { startButton, animation, logo } = this.refs
       startAnimation({
