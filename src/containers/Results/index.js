@@ -5,7 +5,7 @@ import { push } from 'react-router-redux'
 import {reset as resetUser} from '../../redux/modules/user'
 import {reset as resetBieblo} from '../../redux/modules/bieblo'
 import {reset as resetHallo} from '../../redux/modules/hallo'
-import {reset as resetResults, load, setDetails, removeDetails, refresh} from '../../redux/modules/results'
+import {reset as resetResults, load, setDetails, removeDetails, refresh, setRenderedList} from '../../redux/modules/results'
 
 import BackButton from './BackButton'
 import RefreshButton from './RefreshButton'
@@ -24,6 +24,7 @@ const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small
     loading: state.results.loading,
     resultsList: state.results.data,
     details: state.results.details,
+    renderedList: state.results.renderedList,
   }),
   {
     doResetUser: () => resetUser(),
@@ -35,6 +36,7 @@ const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small
     doShowDetails: (result) => setDetails(result),
     doRemoveDetails: () => removeDetails(),
     doRefresh: () => refresh(),
+    doSetRenderedList: (renderedList) => setRenderedList(renderedList),
   }
 )
 
@@ -45,6 +47,8 @@ class ResultsContainer extends React.Component {
     ageGroup: React.PropTypes.number,
     themesLiked: React.PropTypes.arrayOf(React.PropTypes.object),
     resultsList: React.PropTypes.arrayOf(React.PropTypes.object),
+    renderedList: React.PropTypes.arrayOf(React.PropTypes.object),
+    doSetRenderedList: React.PropTypes.func,
     username: React.PropTypes.string,
     doResetUser: React.PropTypes.func,
     doResetBieblo: React.PropTypes.func,
@@ -65,7 +69,7 @@ class ResultsContainer extends React.Component {
   }
 
   render() {
-    const {loaded, loading, details, doRefresh, doShowDetails, doRemoveDetails, doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome, resultsList} = this.props
+    const {loaded, loading, details, doRefresh, renderedList, doSetRenderedList, doShowDetails, doRemoveDetails, doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome, resultsList} = this.props
 
     const doReset = () => {
       doResetUser()
@@ -96,6 +100,8 @@ class ResultsContainer extends React.Component {
             <div className="container">
               <ResultsList
                 resultsList={resultsList}
+                renderedList={renderedList}
+                doSetRenderedList={doSetRenderedList}
                 doShowDetails={doShowDetails}
               />
             </div>
