@@ -117,7 +117,7 @@ class ResultsContainer extends React.Component {
             <div className="container">
               <div className="row">
                 <div className="col-md-4">
-                  <img className="animated bounceInDown" src={changeCoverSizeToLarge(details.cover)} />
+                  <img className="animated bounceInDown book" src={changeCoverSizeToLarge(details.cover)} />
                 </div>
                 <div className="col-md-8">
                   <div className="animated lightSpeedIn">
