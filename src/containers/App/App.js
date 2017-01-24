@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import config from '../../config'
 import { loaded } from 'redux/modules/app'
-import AppTitle from './AppTitle'
 import AppLoading from './AppLoading'
 import AppBackground from './AppBackground'
 
@@ -30,13 +29,12 @@ export default class App extends Component {
   }
 
   render() {
-    const {children, loading, path} = this.props
+    const {children, loading} = this.props
     require('./App.scss')
     return (
       <div>
         <Helmet {...config.app.head}/>
         { !loading && <AppBackground /> }
-        { !loading && path !== '/' && <AppTitle /> }
         { !loading && children ? children : <AppLoading /> }
       </div>
     )
