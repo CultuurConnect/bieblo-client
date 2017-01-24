@@ -137,6 +137,33 @@ const handlePanMove = (ev, themes) => {
   }
 }
 
+const handleClick = (direction, themes, themesLiked, themesDisliked, setThemes, goPathResults) => {
+  const nextTeamElement = getNextThemeElement(themes)
+  if (nextTeamElement) {
+    const theme = {...themes[themes.length - 1]}
+    const newThemes = [...themes.slice(0, -1)]
+    const newThemesLiked = (direction === 'like')
+        ? [...themesLiked, theme]
+        : themesLiked
+    const newThemesDisliked = (direction !== 'like')
+        ? [...themesDisliked, theme]
+        : themesDisliked
+    setThemes(newThemes, newThemesLiked, newThemesDisliked)
+
+    if (newThemesLiked.length >= MAX_SWIPE_LIKE || !newThemes.length) {
+      goPathResults()
+    }
+  }
+}
+
+const handleClickLike = (themes, themesLiked, themesDisliked, setThemes, goPathResults) => {
+  handleClick('like', themes, themesLiked, themesDisliked, setThemes, goPathResults)
+}
+
+const handleClickDislike = (themes, themesLiked, themesDisliked, setThemes, goPathResults) => {
+  handleClick('dislike', themes, themesLiked, themesDisliked, setThemes, goPathResults)
+}
+
 const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPathResults) => {
   const nextTeamElement = getNextThemeElement(themes)
   if (nextTeamElement) {
@@ -303,7 +330,9 @@ class Swipe extends React.Component {
           <div className="row">
             <div className="col-md-4">
               <div className="col-md-12" style={{textAlign: 'center'}}>
-                <em className="fa fa-4x fa-thumbs-o-down" />
+                <em className="fa fa-4x fa-thumbs-o-down"
+                    onClick={() => handleClickDislike(themes, themesLiked, themesDisliked, setThemes, goPathResults)}
+                />
               </div>
             </div>
             <div className="col-md-4">
@@ -311,7 +340,8 @@ class Swipe extends React.Component {
             </div>
             <div className="col-md-4">
               <div className="col-md-12" style={{textAlign: 'center'}}>
-                <em className="fa fa-4x fa-thumbs-o-up" />
+                <em className="fa fa-4x fa-thumbs-o-up"
+                    onClick={() => handleClickLike(themes, themesLiked, themesDisliked, setThemes, goPathResults)} />
               </div>
             </div>
           </div>
