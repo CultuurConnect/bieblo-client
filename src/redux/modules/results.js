@@ -94,7 +94,7 @@ const load = (ageGroup, likes) => {
 
 const setRenderedList = (renderedList) => ({
   type: SET_RENDERED_LIST,
-  renderedList
+  renderedList,
 })
 
 export default reducer
