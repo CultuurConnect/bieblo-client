@@ -135,7 +135,7 @@ class ResultsContainer extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="action-button-container fixed-bottom align-center">
+            <div className="action-button-container align-center" style={{marginTop: 30}}>
               <BackButton
                 doRemoveDetails={doRemoveDetails}
               />
