@@ -133,7 +133,7 @@ class ResultsContainer extends React.Component {
                     <p>{details.summary}</p>
                     <hr/>
                     <div className="animated bounceInUp book-location">
-                        <h4>Waar vind je dit boek?</h4>
+                        <h3>Waar vind je dit boek?</h3>
                         <p>{details.subloc}</p>
                         <p>{details.shelfmark}</p>
                     </div>
