@@ -50,7 +50,7 @@ class Ages extends React.Component {
             )
             : (
               <h1 className="written align-center animated bounceInUp">
-                Klik op jouw leeftijd!'
+                Hoe oud ben je?
               </h1>
             )
         }
