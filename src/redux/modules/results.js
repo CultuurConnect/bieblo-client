@@ -5,6 +5,7 @@ const LOAD_FAIL = 'bieblo/results/LOAD_FAIL'
 const SET_DETAILS = 'bieblo/results/SET_DETAILS'
 const REMOVE_DETAILS = 'bieblo/results/REMOVE_DETAILS'
 const REFRESH = 'bieblo/results/REFRESH'
+const SET_RENDERED_LIST = 'bieblo/results/SET_RENDERED_LIST'
 
 const initialState = {
   loaded: false,
@@ -12,6 +13,7 @@ const initialState = {
   displayedResults: [],
   data: [],
   details: null,
+  renderedList: null,
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -31,6 +33,7 @@ const reducer = (state = initialState, action = {}) => {
           ...action.result,
         ],
         error: null,
+        renderedList: null,
       }
     case LOAD_FAIL:
       return {
@@ -46,6 +49,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         data: newData,
+        renderedList: null,
       }
     case RESET:
       return {
@@ -60,6 +64,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         details: null,
+      }
+    case SET_RENDERED_LIST:
+      return {
+        ...state,
+        renderedList: action.renderedList,
       }
     default:
       return state
@@ -83,6 +92,11 @@ const load = (ageGroup, likes) => {
   })
 }
 
+const setRenderedList = (renderedList) => ({
+  type: SET_RENDERED_LIST,
+  renderedList,
+})
+
 export default reducer
 
 export {
@@ -91,4 +105,5 @@ export {
   setDetails,
   removeDetails,
   refresh,
+  setRenderedList,
 }

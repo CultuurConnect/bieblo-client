@@ -30,11 +30,16 @@ const initialState = {
   ],
   themes: shuffle(
     [
-      {id: 1, cls: 'new', img: '/swipe/humor.jpg', label: 'Humor'},
-      {id: 2, cls: 'new', img: '/swipe/fantasie.jpg', label: 'Fantasie'},
-      {id: 3, cls: 'new', img: '/swipe/misterie.jpg', label: 'Mysterie'},
-      {id: 4, cls: 'new', img: '/swipe/sport.jpg', label: 'sport'},
-      {id: 5, cls: 'new', img: '/swipe/dieren.jpg', label: 'dieren'},
+      {id: 1, cls: 'new', img: '/swipe/Humor.jpg', label: 'Humor'},
+      {id: 2, cls: 'new', img: '/swipe/Magie.jpg', label: 'Magie'},
+      {id: 3, cls: 'new', img: '/swipe/Detectieve.jpg', label: 'Detectieve'},
+      {id: 4, cls: 'new', img: '/swipe/Sport.jpg', label: 'Sport'},
+      {id: 5, cls: 'new', img: '/swipe/Dieren.jpg', label: 'Dieren'},
+      {id: 6, cls: 'new', img: '/swipe/AndereCulturen.jpg', label: 'Andere Culturen'},
+      {id: 7, cls: 'new', img: '/swipe/Liefde.jpg', label: 'Liefde'},
+      {id: 8, cls: 'new', img: '/swipe/OorlogHistorisch.jpg', label: 'Oorlog Historisch'},
+      {id: 9, cls: 'new', img: '/swipe/Prijsboeken.jpg', label: 'Prijsboeken'},
+      {id: 10, cls: 'new', img: '/swipe/Vriendschap.jpg', label: 'Vriendschap'},
     ]
   ).map(
     (item, idx) => ({

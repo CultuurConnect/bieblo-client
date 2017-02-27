@@ -23,8 +23,12 @@ const getResultsRowsFromResults = (resultsList) => {
   return resultsRows
 }
 
-const ResultsList = ({resultsList, doShowDetails}) => {
-  const resultsRows = getResultsRowsFromResults(resultsList)
+const ResultsList = ({resultsList, renderedList, doSetRenderedList, doShowDetails}) => {
+  const resultsRows = renderedList || getResultsRowsFromResults(resultsList)
+
+  if (!renderedList) {
+    doSetRenderedList(resultsRows)
+  }
 
   return (
     <div className="results-list">
