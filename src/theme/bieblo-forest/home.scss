@@ -1,47 +1,54 @@
 #content {
-  #home-logo {
-    margin-top: 160px;
-  }
+  #home {
+    .owl {
+      left: 15px;
+      top: 108px;
+    }
 
-  #home-button-container {
-    bottom: 220px
-  }
+    #home-logo {
+      margin-top: 160px;
+    }
 
-  #home-disclaimer {
-    position: absolute;
-    bottom: 5px;
-    text-align: center;
-    display: block;
-    width: 100%;
-    color: #bebebe;
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: 3px 0 3px #000;
-  }
+    #home-button-container {
+      bottom: 220px
+    }
 
-  #logo-cultuurconnect {
-    background: url('/theme/bieblo-forrest/1080/logo_cultuurconnect.png') center center no-repeat;
-    height: 90px;
-    width: 90px;
-    position: absolute;
-    bottom: 0;
-    right: 290px;
-  }
+    #home-disclaimer {
+      position: absolute;
+      bottom: 5px;
+      text-align: center;
+      display: block;
+      width: 100%;
+      color: #bebebe;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 3px 0 3px #000;
+    }
 
-  #logo-de-krook {
-    background: url('/theme/bieblo-forrest/1080/logo_de_krook.png') center center no-repeat;
-    height: 90px;
-    width: 90px;
-    position: absolute;
-    bottom: 0;
-    right: 190px;
-  }
-  #logo-vlaamse-gemeenschap{
-    background: url('/theme/bieblo-forrest/1080/logo_vlaamse_gemeenschap.jpg') center center no-repeat;
-    height: 90px;
-    width: 170px;
-    position: absolute;
-    bottom: 0;
-    right: 20px;
+    #logo-cultuurconnect {
+      background: url('/theme/bieblo-forrest/1080/logo_cultuurconnect.png') center center no-repeat;
+      height: 90px;
+      width: 90px;
+      position: absolute;
+      bottom: 0;
+      right: 290px;
+    }
+
+    #logo-de-krook {
+      background: url('/theme/bieblo-forrest/1080/logo_de_krook.png') center center no-repeat;
+      height: 90px;
+      width: 90px;
+      position: absolute;
+      bottom: 0;
+      right: 190px;
+    }
+    #logo-vlaamse-gemeenschap {
+      background: url('/theme/bieblo-forrest/1080/logo_vlaamse_gemeenschap.jpg') center center no-repeat;
+      height: 90px;
+      width: 170px;
+      position: absolute;
+      bottom: 0;
+      right: 20px;
+    }
   }
 }

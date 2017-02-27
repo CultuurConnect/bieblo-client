@@ -6,7 +6,7 @@ import { push } from 'react-router-redux'
 
 import { connect } from 'react-redux'
 import {startAnimation} from './animation'
-
+import {Owl} from '../../components'
 
 @connect(
     state => ({
@@ -41,8 +41,9 @@ export default class Home extends Component {
     }
 
     return (
-      <div>
+      <div id="home">
         <Helmet title="Home"/>
+        <Owl />
         <div id="home-logo">
           <h2 className="align-center animated fadeIn" ref="animation">Op zoek naar een boek?</h2>
           <img id="logo" ref="logo" className="animated flipInX" src="/theme/bieblo-forrest/1080/logo.png"/>

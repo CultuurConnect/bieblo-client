@@ -87,76 +87,16 @@
     font-family: 'luckiest_guyregular', cursive;
   }
 
-  .swipe-wrapper {
-    max-width: 1080px;
-    min-height: 810px;
-
-    .theme {
-      background: url('/theme/bieblo-forrest/1080/card_bg.png') no-repeat center center;
-      width: 496px;
-      height: 644px;
-      background-size: auto 100%;
-      margin-left: 292px;
-      left: initial;
-      right: initial;
-
-      &.disliked {
-        margin-left: 80px;
-        width: 129.95199999999994px !important;
-        height: 168.72799999999995px !important;
-        top: 30% !important;
-        transform: none;
-        transform-origin: initial;
-      }
-
-      &.liked {
-        top: 30% !important;
-        width: 124px !important;
-        height: 161px !important;
-        margin-left: 870px;
-        transform: none;
-        transform-origin: initial;
-      }
-
-      &.liked:nth-child(1) {
-        top: 10% !important;
-      }
-
-      &.liked:nth-child(2) {
-        top: 30% !important;
-      }
-
-      &.liked:nth-child(3) {
-        top: 50% !important;
-      }
-
-      .image {
-        width: 75%;
-        margin: 15px auto;
-        height: 100%;
-      }
-    }
-  }
-  #btn-dislike {
-    background-image: url('/theme/bieblo-forrest/1080/btn_dislike.png');
-    left: 15px;
-  }
-
-  #btn-like {
-    background-image: url('/theme/bieblo-forrest/1080/btn_like.png') ;
-    right: 15px;
-  }
-
-  #btn-like,
-  #btn-dislike {
+  .owl {
+    background-image: url('/theme/bieblo-forrest/1080/owl_default.png');
     background-repeat: no-repeat;
     background-position: center center;
-    height: 250px;
-    width: 250px;
-    text-indent: -9000px;
-    border: none;
-    cursor: pointer;
     position: absolute;
-    bottom: 0;
+    width: 250px;
+    height: 250px;
+
+    &.closed {
+      background-image: url('/theme/bieblo-forrest/1080/owl_closed.png');
+    }
   }
 }
