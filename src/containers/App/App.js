@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import config from '../../config'
 import { loaded } from 'redux/modules/app'
-import AppTitle from './AppTitle'
 import AppLoading from './AppLoading'
 import AppBackground from './AppBackground'
 
 @connect(
   state => ({
     loading: state.app.loading,
-    path: state.routing.locationBeforeTransitions.pathname,
   }),
   {pushAppLoaded: loaded}
 )
@@ -30,14 +28,20 @@ export default class App extends Component {
   }
 
   render() {
-    const {children, loading, path} = this.props
+    const {children, loading} = this.props
     require('./App.scss')
     return (
       <div>
         <Helmet {...config.app.head}/>
+        { !loading && children ?
+          (
+            <div id="app-content">
+              {children}
+            </div>
+          )
+          : <AppLoading />
+        }
         { !loading && <AppBackground /> }
-        { !loading && path !== '/' && <AppTitle /> }
-        { !loading && children ? children : <AppLoading /> }
       </div>
     )
   }

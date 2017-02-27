@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 
 import Helmet from 'react-helmet'
-import { Shake } from 'reshake'
 import { push } from 'react-router-redux'
 
 
 import { connect } from 'react-redux'
-import {addAnimationEventListener, startAnimation} from './animation'
+import {startAnimation} from './animation'
 
 
 @connect(
@@ -22,7 +21,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    addAnimationEventListener(this.refs.animation)
+    // addAnimationEventListener(this.refs.animation)
   }
 
   render() {
@@ -44,28 +43,20 @@ export default class Home extends Component {
     return (
       <div>
         <Helmet title="Home"/>
-        <Shake
-          h={4}
-          v={4}
-          r={2}
-          dur={450}
-          int={10}
-          max={100}
-          fixed
-          fixedStop={false}
-          freez={false}>
-          <h1 ref="logo" className="written align-center animated flipInX" style={{fontSize: 120, marginTop: 50}}>Bieblo</h1>
-        </Shake>
-
-        <div className="container">
-            <hr/>
-            <h2 className="font-mono align-center animated fadeIn" ref="animation">Op zoek naar een boek?</h2>
+        <div id="home-logo">
+          <h2 className="align-center animated fadeIn" ref="animation">Op zoek naar een boek?</h2>
+          <img id="logo" ref="logo" className="animated flipInX" src="/theme/bieblo-forrest/1080/logo.png"/>
         </div>
-
-        <div className="action-button-container fixed-bottom align-center">
-          <div ref="startButton" className="action-button blue icon" onClick={onClickStart}>
-            <i className="fa fa-play-circle" /> Start!
+        <div id="home-button-container" className="action-button-container fixed-bottom align-center">
+          <div ref="startButton" className="action-button blue" onClick={onClickStart}>
+            Start!
           </div>
+        </div>
+        <div id="home-disclaimer">
+          <p>Bieblo is een realisatie van</p>
+          <div id="logo-cultuurconnect" />
+          <div id="logo-dekrook" />
+          <div id="logo-vlaamse-gemeenschap" />
         </div>
       </div>
     )

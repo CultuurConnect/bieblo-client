@@ -1,0 +1,162 @@
+@font-face {
+  font-family: 'luckiest_guyregular';
+  src: url('/theme/bieblo-forrest/fonts/luckiestguy-webfont.woff2') format('woff2'),
+  url('/theme/bieblo-forrest/fonts/luckiestguy-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+#app-wrap {
+  width: 1080px;
+  height: 3000px;
+  background: #65691c;
+  margin: 0 auto;
+}
+
+#appBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  animation: none;
+}
+
+#content {
+  width: 1080px;
+  height: 810px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url('/theme/bieblo-forrest/1080/background.jpg') no-repeat center center;
+
+  #app-content {
+    width: 1080px;
+    height: 810px;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .action-button-container {
+    text-align: center;
+
+    &.fixed-bottom {
+      position: absolute;
+      bottom: 80px;
+    }
+
+    .action-button {
+      font-family: 'luckiest_guyregular', cursive;
+      text-shadow: 2px 2px 2px #333;
+      color: #f9f337;
+      font-size: 48px;
+      cursor: pointer;
+      width: 245px;
+      height: 95px;
+      background: url('/theme/bieblo-forrest/1080/btn_bg.png');
+      background-color: transparent;
+      border-bottom: none;
+      padding: 10px 0 0 0;
+    }
+  }
+
+  h1 {
+    font-family: 'luckiest_guyregular', cursive;
+    text-shadow: 2px 2px 2px #333;
+    color: #f9f337;
+    font-size: 36px;
+    background: url('/theme/bieblo-forrest/1080/title_bg.png') no-repeat center center;
+    height: 110px;
+    padding-top: 30px;
+  }
+
+  h2 {
+    font-family: 'luckiest_guyregular', cursive;
+    color: #ffffff;
+    text-shadow: 6px 6px 12px #333;
+  }
+
+  #logo {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .written {
+    font-family: 'luckiest_guyregular', cursive;
+  }
+
+  .swipe-wrapper {
+    max-width: 1080px;
+    min-height: 810px;
+
+    .theme {
+      background: url('/theme/bieblo-forrest/1080/card_bg.png') no-repeat center center;
+      width: 496px;
+      height: 644px;
+      background-size: auto 100%;
+      margin-left: 292px;
+      left: initial;
+      right: initial;
+
+      &.disliked {
+        margin-left: 80px;
+        width: 129.95199999999994px !important;
+        height: 168.72799999999995px !important;
+        top: 30% !important;
+        transform: none;
+        transform-origin: initial;
+      }
+
+      &.liked {
+        top: 30% !important;
+        width: 124px !important;
+        height: 161px !important;
+        margin-left: 870px;
+        transform: none;
+        transform-origin: initial;
+      }
+
+      &.liked:nth-child(1) {
+        top: 10% !important;
+      }
+
+      &.liked:nth-child(2) {
+        top: 30% !important;
+      }
+
+      &.liked:nth-child(3) {
+        top: 50% !important;
+      }
+
+      .image {
+        width: 75%;
+        margin: 15px auto;
+        height: 100%;
+      }
+    }
+  }
+  #btn-dislike {
+    background-image: url('/theme/bieblo-forrest/1080/btn_dislike.png');
+    left: 15px;
+  }
+
+  #btn-like {
+    background-image: url('/theme/bieblo-forrest/1080/btn_like.png') ;
+    right: 15px;
+  }
+
+  #btn-like,
+  #btn-dislike {
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 250px;
+    width: 250px;
+    text-indent: -9000px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+  }
+}

@@ -9,7 +9,7 @@ const AgeButton = ({age, cols, onAgeButtonClick, animated}) => {
   return (
     <div className={`action-button-container col-xs-6 col-md-${cols} ${animation}`} style={{textAlign: 'center'}}>
       <div className="action-button green" onClick={onClick}>
-        {age.label}
+        {age.label} Jaar
       </div>
     </div>
   )

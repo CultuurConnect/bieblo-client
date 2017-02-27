@@ -1,4 +1,5 @@
 const SET_THEMES = 'bieblo/bieblo/SET_THEMES'
+const SET_SWIPING = 'bieblo/bieblo/SET_SWIPiNG'
 const RESET = 'bieblo/bieblo/RESET'
 
 // fisher-yates shuffle
@@ -16,6 +17,7 @@ const shuffle = (array) => {
 const initialState = {
   library: null,
   age: null,
+  swiping: false,
   libraries: [
      {id: 1, naam: 'De krook', logo: 'https://pbs.twimg.com/profile_images/378800000041290325/01c214021ddc7ebc543087ce660e9fa3_400x400.png'},
   ],
@@ -52,6 +54,12 @@ const reducer = (state = initialState, action = {}) => {
         themes: action.themes,
         themesLiked: action.themesLiked,
         themesDisliked: action.themesDisliked,
+        swiping: false,
+      }
+    case SET_SWIPING:
+      return {
+        ...state,
+        swiping: action.swiping,
       }
     case RESET:
       return {
@@ -71,9 +79,15 @@ const setThemes = (themes, themesLiked, themesDisliked) => ({
   themesDisliked,
 })
 
+const setSwiping = (swiping) => ({
+  type: SET_SWIPING,
+  swiping,
+})
+
 export default reducer
 
 export {
   reset,
   setThemes,
+  setSwiping,
 }

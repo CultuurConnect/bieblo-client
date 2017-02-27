@@ -67,56 +67,69 @@ const handlePanStart = (ev) => {
 const handlePanLeft = (distance, themes) => {
   const nextTeamElement = getNextThemeElement(themes)
   if (nextTeamElement) {
-    const perc = distance < 250 ? (distance / 250) * 100 : 100
+    const SWIDTH = 1080
+    const WIDTH = 496
+    const HEIGHT = 644
 
-    const left = 50 - (perc / 2)
-    const marginLeft = -125 + (125 * (perc / 100) * 2)
+    const perc = distance < (WIDTH / 2) ? (distance / (WIDTH / 2)) * 100 : 100
 
-    nextTeamElement.style.left = `${left}%`
+    // const pLeft = 50 - (perc / 2)
+    // const left = pLeft >= 20 ? pLeft : 20
+    const pMarginLeft = (SWIDTH / 2) - (WIDTH / 2) - ((WIDTH / 2) * (perc / 100) * 2)
+    const marginLeft = pMarginLeft >= 80 ? pMarginLeft : 80
+
+    const top = 30 * (perc / 100)
+
+    const width = WIDTH - ((WIDTH - WIDTH * 0.25) * (perc / 100))
+    const height = HEIGHT - ((HEIGHT - HEIGHT * 0.25) * (perc / 100))
+
+    nextTeamElement.style.top = `${top}%`
+    // nextTeamElement.style.left = `${left}%`
+    // nextTeamElement.style.right = `100%`
+    nextTeamElement.style.width = `${width}px`
+    nextTeamElement.style.height = `${height}px`
     nextTeamElement.style.marginLeft = `${marginLeft}px`
 
-    if (distance <= (250 / 2)) {
-      nextTeamElement.style.transform = null
-    } else {
-      let percentage = distance / panState.container.width
-      if (percentage > 1) {
-        percentage = 1
-      }
-      const origin = Math.round(percentage * 100)
-      const skew = 20 * percentage
-      const scale = 1 - (0.20 * percentage)
-      const degree = 75 * percentage
-      nextTeamElement.style['transform-origin'] = (distance <= 250) ? `${origin}% bottom` : 'bottom right'
-      nextTeamElement.style.transform = `scale(${scale}) rotate3d(1,0,0,${degree}deg) skewX(${skew}deg) skewY(-${skew}deg)`
-    }
+    // if (distance <= (250 / 2)) {
+    //   nextTeamElement.style.transform = null
+    // } else {
+    //   let percentage = distance / panState.container.width
+    //   if (percentage > 1) {
+    //     percentage = 1
+    //   }
+    //   const origin = Math.round(percentage * 100)
+    //   const skew = 20 * percentage
+    //   const scale = 1 - (0.20 * percentage)
+    //   const degree = 75 * percentage
+    //   nextTeamElement.style['transform-origin'] = (distance <= 250) ? `${origin}% bottom` : 'bottom right'
+    //   nextTeamElement.style.transform = `scale(${scale}) rotate3d(1,0,0,${degree}deg) skewX(${skew}deg) skewY(-${skew}deg)`
+    // }
   }
 }
 
 const handlePanRight = (distance, themes) => {
   const nextTeamElement = getNextThemeElement(themes)
   if (nextTeamElement) {
-    const perc = distance < 250 ? (distance / 250) * 100 : 100
+    const SWIDTH = 1080
+    const WIDTH = 496
+    const HEIGHT = 644
 
-    const right = (perc / 2)
-    const marginRight = -(125 - (125 * (perc / 100) * 2))
+    const perc = distance < (WIDTH / 2) ? (distance / (WIDTH / 2)) * 100 : 100
 
-    nextTeamElement.style.right = `${right}%`
-    nextTeamElement.style.marginLeft = `${marginRight}px`
+    console.log('distance?', distance, perc)
 
-    const width = 250
+    const pMarginLeft = ((SWIDTH / 2) - (WIDTH / 2)) + ((WIDTH) * (perc / 75))
+    const marginLeft = pMarginLeft <= 870 ? pMarginLeft : 870
 
-    if (distance <= (width / 2)) {
-      nextTeamElement.style.transform = null
-    } else {
-      const percentage = perc / 100
+    const top = 30 * (perc / 100)
 
-      const origin = Math.round(percentage * 100)
-      const skew = 20 * percentage
-      const scale = 1 - (0.20 * percentage)
-      const degree = 75 * percentage
-      nextTeamElement.style['transform-origin'] = (distance <= width) ? `-${origin}% bottom` : 'bottom left'
-      nextTeamElement.style.transform = `scale(${scale}) rotate3d(1,0,0,${degree}deg) skewX(-${skew}deg) skewY(${skew}deg)`
-    }
+    const width = WIDTH - ((WIDTH - WIDTH * 0.25) * (perc / 100))
+    const height = HEIGHT - ((HEIGHT - HEIGHT * 0.25) * (perc / 100))
+
+    nextTeamElement.style.top = `${top}%`
+    nextTeamElement.style.width = `${width}px`
+    nextTeamElement.style.height = `${height}px`
+    nextTeamElement.style.marginLeft = `${marginLeft}px`
   }
 }
 
@@ -137,6 +150,22 @@ const handlePanMove = (ev, themes) => {
   }
 }
 
+const savePanResult = (themes, themesLiked, themesDisliked, setThemes, goPathResults, direction) => {
+  const theme = {...themes[themes.length - 1]}
+  const newThemes = [...themes.slice(0, -1)]
+  const newThemesLiked = (direction === 'like')
+    ? [...themesLiked, theme]
+    : themesLiked
+  const newThemesDisliked = (direction !== 'like')
+    ? [...themesDisliked, theme]
+    : themesDisliked
+  setThemes(newThemes, newThemesLiked, newThemesDisliked)
+
+  if (newThemesLiked.length >= MAX_SWIPE_LIKE || !newThemes.length) {
+    goPathResults()
+  }
+}
+
 const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPathResults) => {
   const nextTeamElement = getNextThemeElement(themes)
   if (nextTeamElement) {
@@ -148,21 +177,8 @@ const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPath
     const distance = direction === 'dislike' ? center - xPosition : xPosition - center
     const percentage = distance < 250 ? (distance / 250) * 100 : 100
 
-
     if (percentage >= 60) {
-      const theme = {...themes[themes.length - 1]}
-      const newThemes = [...themes.slice(0, -1)]
-      const newThemesLiked = (direction === 'like')
-        ? [...themesLiked, theme]
-        : themesLiked
-      const newThemesDisliked = (direction !== 'like')
-        ? [...themesDisliked, theme]
-        : themesDisliked
-      setThemes(newThemes, newThemesLiked, newThemesDisliked)
-
-      if (newThemesLiked.length >= MAX_SWIPE_LIKE || !newThemes.length) {
-        goPathResults()
-      }
+      savePanResult(themesLiked, themesDisliked, setThemes, goPathResults, direction)
     }
 
     /**
@@ -179,7 +195,7 @@ const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPath
       // To the right
       illustrationEl.className = style.illustration + ' ' + style.right
       illustrationEl.style = null
-      const newIllustrations = changeIllustrationCls(illustrationObj.id, 'right', illustrations)
+      const newIllustrations = changeIllustrationCls(illustrationObj.id, 'rhandlePanLeftight', illustrations)
       updateIllustrations(newIllustrations)
       if (
         [...newIllustrations].filter(el => el.cls === 'right').length >= MAX_SWIPE_LIKE
@@ -218,6 +234,30 @@ const initWindow = () => {
   }
 }
 
+const doDislike = (themes, themesLiked, themesDisliked, setThemes, goPathResults, distance = 0) => {
+  if (distance < 260) {
+    handlePanLeft(distance, themes)
+    const newDistance = distance + 2.5
+    setTimeout(() => {
+      doDislike(themes, themesLiked, themesDisliked, setThemes, goPathResults, newDistance)
+    }, 1)
+  } else {
+    savePanResult(themes, themesLiked, themesDisliked, setThemes, goPathResults, 'dislike')
+  }
+}
+
+const doLike = (themes, themesLiked, themesDisliked, setThemes, goPathResults, distance = 0) => {
+  if (distance < 260) {
+    handlePanRight(distance, themes)
+    const newDistance = distance + 2.5
+    setTimeout(() => {
+      doLike(themes, themesLiked, themesDisliked, setThemes, goPathResults, newDistance)
+    }, 1)
+  } else {
+    savePanResult(themes, themesLiked, themesDisliked, setThemes, goPathResults, 'like')
+  }
+}
+
 // const updateIllustrations = (illustrations) => {
 //   illustrations.forEach(({id}) => {
 //     const el = document.getElementById(`illustration-${id}`);
@@ -231,6 +271,7 @@ const initWindow = () => {
 
 @connect(
   state => ({
+    swiping: state.bieblo.swiping,
     themes: state.bieblo.themes,
     themesLiked: state.bieblo.themesLiked,
     themesDisliked: state.bieblo.themesDisliked,
@@ -247,6 +288,8 @@ class Swipe extends React.Component {
     themes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
     themesLiked: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
     themesDisliked: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    swiping: React.PropTypes.bool.isRequired,
+    setSwiping: React.PropTypes.func.isRequired,
     setThemes: React.PropTypes.func.isRequired,
     goPathResults: React.PropTypes.func.isRequired,
   };
@@ -258,25 +301,22 @@ class Swipe extends React.Component {
 
   render() {
     const style = require('./style.scss')
-    const {themes, themesLiked, themesDisliked, setThemes, goPathResults} = this.props
+    const {themes, themesLiked, themesDisliked, setThemes, goPathResults, swiping, setSwiping} = this.props
 
-    const arrowLeuk = require('./wel_leuk.png')
-    const arrowNietLeuk = require('./niet_leuk.png')
+    const classNameBtn = 'action-button' + (swiping ? ' swiping' : '')
 
-    const styleLeft = {
-      backgroundImage: `url(${arrowNietLeuk})`,
-      height: 400,
-      backgroundSize: '70%',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'right top',
+    const clickLike = () => {
+      if (!swiping) {
+        setSwiping(true)
+        doLike(themes, themesLiked, themesDisliked, setThemes, goPathResults, 0)
+      }
     }
 
-    const styleRight = {
-      backgroundImage: `url(${arrowLeuk})`,
-      height: 400,
-      backgroundSize: '70%',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'left top',
+    const clickDislike = () => {
+      if (!swiping) {
+        setSwiping(true)
+        doDislike(themes, themesLiked, themesDisliked, setThemes, goPathResults, 0)
+      }
     }
 
     return (
@@ -291,29 +331,11 @@ class Swipe extends React.Component {
           { themesDisliked && themesDisliked.map(theme => <ThemeDisliked theme={theme} />) }
           { themesLiked && themesLiked.map(theme => <ThemeLiked theme={theme} />) }
 
-          <div className="row" style={{height: 400}}>
-            <div className="col-md-4" style={styleLeft}>
-            </div>
-            <div className="col-md-4">
-              &nbsp;
-            </div>
-            <div className="col-md-4" style={styleRight}>
-            </div>
+          <div id="btn-like" ref="startButton" className={classNameBtn} onClick={clickLike}>
+            wel leuk
           </div>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="col-md-12" style={{textAlign: 'center'}}>
-                <em className="fa fa-4x fa-thumbs-o-down" />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <p>&nbsp;</p>
-            </div>
-            <div className="col-md-4">
-              <div className="col-md-12" style={{textAlign: 'center'}}>
-                <em className="fa fa-4x fa-thumbs-o-up" />
-              </div>
-            </div>
+          <div id="btn-dislike" className={classNameBtn} onClick={clickDislike}>
+            niet leuk
           </div>
         </div>
       </Hammer>
