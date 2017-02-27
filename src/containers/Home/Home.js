@@ -31,10 +31,11 @@ export default class Home extends Component {
       const startAnimationEndedCallback = () => {
         dispatch(push('/leeftijd'))
       }
-      const { startButton, animation, logo } = this.refs
+      const { startButton, animation, owl, logo } = this.refs
       startAnimation({
         logo,
         animation,
+        owl,
         startButton,
         startAnimationEndedCallback,
       })
@@ -43,7 +44,7 @@ export default class Home extends Component {
     return (
       <div id="home">
         <Helmet title="Home"/>
-        <Owl />
+        <Owl ref="owl" />
         <div id="home-logo">
           <h2 className="align-center animated fadeIn" ref="animation">Op zoek naar een boek?</h2>
           <img id="logo" ref="logo" className="animated flipInX" src="/theme/bieblo-forrest/1080/logo.png"/>

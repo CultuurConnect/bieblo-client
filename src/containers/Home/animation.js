@@ -107,8 +107,9 @@ const addAnimationEventListener = (element) => {
   )
 }
 
-const startAnimation = ({logo, startButton, animation, startAnimationEndedCallback}) => {
+const startAnimation = ({logo, startButton, animation, owl, startAnimationEndedCallback}) => {
   homeAnimationState.running = false
+  owl.className = 'owl animated bounceOut'
   clearTimeout(homeAnimationState.timedOutEvent)
   const events = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'
   events.split(' ').forEach(

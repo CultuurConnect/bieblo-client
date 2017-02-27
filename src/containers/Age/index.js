@@ -6,6 +6,7 @@ import AgeList from './AgesList'
 
 import * as userActions from 'redux/modules/user'
 import {exitAnimation} from './animations'
+import {Owl} from '../../components'
 
 
 @connect(
@@ -39,27 +40,30 @@ class Ages extends React.Component {
     }
 
     return (
-      <div ref="contentWrap">
-        <div className="row">
-        {
-          username
-            ? (
-              <h1 className="written align-center animated bounceInUp">
-                Hoe oud ben je, <span className="uppercaseFirst">{username}?</span>
-              </h1>
-            )
-            : (
-              <h1 className="written align-center animated bounceInUp">
-                Hoe oud ben je?
-              </h1>
-            )
-        }
+      <div id="age">
+        <Owl />
+        <div ref="contentWrap">
+          <div className="row">
+          {
+            username
+              ? (
+                <h1 className="written align-center animated bounceInUp">
+                  Hoe oud ben je, <span className="uppercaseFirst">{username}?</span>
+                </h1>
+              )
+              : (
+                <h1 className="written align-center animated bounceInUp">
+                  Hoe oud ben je?
+                </h1>
+              )
+          }
+          </div>
+          <AgeList
+            style={{marginTop: 10}}
+            agesList={agesList}
+            onAgeButtonClick={onAgeButtonClick}
+          />
         </div>
-        <AgeList
-          style={{marginTop: 10}}
-          agesList={agesList}
-          onAgeButtonClick={onAgeButtonClick}
-        />
       </div>
     )
   }

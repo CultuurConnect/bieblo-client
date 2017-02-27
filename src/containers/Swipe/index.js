@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import Hammer from 'react-hammerjs'
+import {Owl} from '../../components'
 
 import * as biebloActions from 'redux/modules/bieblo'
 
@@ -116,8 +117,6 @@ const handlePanRight = (distance, themes) => {
 
     const perc = distance < (WIDTH / 2) ? (distance / (WIDTH / 2)) * 100 : 100
 
-    console.log('distance?', distance, perc)
-
     const pMarginLeft = ((SWIDTH / 2) - (WIDTH / 2)) + ((WIDTH) * (perc / 75))
     const marginLeft = pMarginLeft <= 870 ? pMarginLeft : 870
 
@@ -178,7 +177,7 @@ const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPath
     const percentage = distance < 250 ? (distance / 250) * 100 : 100
 
     if (percentage >= 60) {
-      savePanResult(themesLiked, themesDisliked, setThemes, goPathResults, direction)
+      savePanResult(themes, themesLiked, themesDisliked, setThemes, goPathResults, direction)
     }
 
     /**
@@ -320,25 +319,28 @@ class Swipe extends React.Component {
     }
 
     return (
-      <Hammer
-        onPanStart={(ev) => handlePanStart(ev, themes)}
-        onPan={(ev) => handlePanMove(ev, themes)}
-        onPanEnd={(ev) => handlePanEnd(ev, themes, themesLiked, themesDisliked, setThemes, goPathResults)}
-      >
-        <div id="testttt" ref="biebloWrapper" className="swipe-wrapper">
-          <div className={style.background} />
-          { themes && themes.map(theme => <Theme theme={theme} />) }
-          { themesDisliked && themesDisliked.map(theme => <ThemeDisliked theme={theme} />) }
-          { themesLiked && themesLiked.map(theme => <ThemeLiked theme={theme} />) }
+      <div id="swipe">
+        <Hammer
+          onPanStart={(ev) => handlePanStart(ev, themes)}
+          onPan={(ev) => handlePanMove(ev, themes)}
+          onPanEnd={(ev) => handlePanEnd(ev, themes, themesLiked, themesDisliked, setThemes, goPathResults)}
+        >
+          <div ref="biebloWrapper" className="swipe-wrapper">
+            <div className={style.background} />
+            { themes && themes.map(theme => <Theme theme={theme} />) }
+            { themesDisliked && themesDisliked.map(theme => <ThemeDisliked theme={theme} />) }
+            { themesLiked && themesLiked.map(theme => <ThemeLiked theme={theme} />) }
 
-          <div id="btn-like" ref="startButton" className={classNameBtn} onClick={clickLike}>
-            wel leuk
+            <div id="btn-like" ref="startButton" className={classNameBtn} onClick={clickLike}>
+              wel leuk
+            </div>
+            <div id="btn-dislike" className={classNameBtn} onClick={clickDislike}>
+              niet leuk
+            </div>
+            <Owl />
           </div>
-          <div id="btn-dislike" className={classNameBtn} onClick={clickDislike}>
-            niet leuk
-          </div>
-        </div>
-      </Hammer>
+        </Hammer>
+      </div>
     )
   }
 }
