@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import Hammer from 'react-hammerjs'
-import {Owl} from '../../components'
+import {Owl, Home} from '../../components'
 
 import * as biebloActions from 'redux/modules/bieblo'
 
@@ -327,9 +327,9 @@ class Swipe extends React.Component {
         >
           <div ref="biebloWrapper" className="swipe-wrapper">
             <div className={style.background} />
-            { themes && themes.map(theme => <Theme theme={theme} />) }
-            { themesDisliked && themesDisliked.map(theme => <ThemeDisliked theme={theme} />) }
-            { themesLiked && themesLiked.map(theme => <ThemeLiked theme={theme} />) }
+            { themes && themes.map(theme => <Theme key={`theme-${theme.id}`} theme={theme} />) }
+            { themesDisliked && themesDisliked.map(theme => <ThemeDisliked key={`theme-${theme.id}`} theme={theme} />) }
+            { themesLiked && themesLiked.map(theme => <ThemeLiked key={`theme-${theme.id}`} theme={theme} />) }
 
             <div id="btn-like" ref="startButton" className={classNameBtn} onClick={clickLike}>
               wel leuk
@@ -338,6 +338,7 @@ class Swipe extends React.Component {
               niet leuk
             </div>
             <Owl />
+            <Home />
           </div>
         </Hammer>
       </div>

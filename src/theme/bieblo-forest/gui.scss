@@ -44,7 +44,7 @@
 
     &.fixed-bottom {
       position: absolute;
-      bottom: 80px;
+      bottom: 40px;
     }
 
     .action-button {
@@ -59,6 +59,12 @@
       background-color: transparent;
       border-bottom: none;
       padding: 10px 0 0 0;
+
+      &.large {
+        width: 400px;
+        font-size: 36px;
+        background: url('/theme/bieblo-forrest/1080/btn_large_bg.png');
+      }
     }
   }
 
@@ -98,5 +104,17 @@
     &.closed {
       background-image: url('/theme/bieblo-forrest/1080/owl_closed.png');
     }
+  }
+
+  #home-btn {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    background: url('/theme/bieblo-forrest/1080/home_btn.png') no-repeat center center;
+    width: 65px;
+    height: 65px;
+    z-index: 100;
+    border: none;
+    cursor: pointer;
   }
 }

@@ -6,7 +6,7 @@ const RefreshButton = ({doRefresh}) => {
   }
 
   return (
-    <div className="action-button green icon animated bounceInUp" onClick={onClick}>
+    <div className="action-button large green icon animated bounceInUp" onClick={onClick}>
       <i className="fa fa-refresh" /> Andere boeken
     </div>
   )

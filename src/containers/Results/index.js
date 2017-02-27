@@ -1,15 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
+import { Owl, Home } from '../../components'
 
-import {reset as resetUser} from '../../redux/modules/user'
-import {reset as resetBieblo} from '../../redux/modules/bieblo'
-import {reset as resetHallo} from '../../redux/modules/hallo'
-import {reset as resetResults, load, setDetails, removeDetails, refresh, setRenderedList} from '../../redux/modules/results'
+import {load, setDetails, removeDetails, refresh, setRenderedList} from '../../redux/modules/results'
 
 import BackButton from './BackButton'
 import RefreshButton from './RefreshButton'
-import RestartButton from './RestartButton'
 import ResultsList from './ResultsList'
 
 const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small', 'coversize=large') : ''
@@ -27,11 +23,6 @@ const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small
     renderedList: state.results.renderedList,
   }),
   {
-    doResetUser: () => resetUser(),
-    doResetBieblo: () => resetBieblo(),
-    doResetHallo: () => resetHallo(),
-    doResetResults: () => resetResults(),
-    goPathHome: () => push('/'),
     doLoad: (ageGroup, themesLiked) => load(ageGroup, themesLiked),
     doShowDetails: (result) => setDetails(result),
     doRemoveDetails: () => removeDetails(),
@@ -47,16 +38,11 @@ class ResultsContainer extends React.Component {
     ageGroup: React.PropTypes.number,
     themesLiked: React.PropTypes.arrayOf(React.PropTypes.object),
     resultsList: React.PropTypes.arrayOf(React.PropTypes.object),
-    renderedList: React.PropTypes.arrayOf(React.PropTypes.object),
+    renderedList: React.PropTypes.array,
     doSetRenderedList: React.PropTypes.func,
     username: React.PropTypes.string,
-    doResetUser: React.PropTypes.func,
-    doResetBieblo: React.PropTypes.func,
-    doResetHallo: React.PropTypes.func,
-    doResetResults: React.PropTypes.func,
     doResultRefresh: React.PropTypes.func,
     doRefresh: React.PropTypes.func,
-    goPathHome: React.PropTypes.func,
     doLoad: React.PropTypes.func,
     doShowDetails: React.PropTypes.func,
     doRemoveDetails: React.PropTypes.func,
@@ -69,14 +55,7 @@ class ResultsContainer extends React.Component {
   }
 
   render() {
-    const {loaded, loading, details, doRefresh, renderedList, doSetRenderedList, doShowDetails, doRemoveDetails, doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome, resultsList} = this.props
-
-    const doReset = () => {
-      doResetUser()
-      doResetBieblo()
-      doResetHallo()
-      doResetResults()
-    }
+    const {loaded, loading, details, doRefresh, renderedList, doSetRenderedList, doShowDetails, doRemoveDetails, resultsList} = this.props
 
     const loadingSVG = require('./../App/loading.svg')
     const loadingStyle = {
@@ -93,11 +72,16 @@ class ResultsContainer extends React.Component {
     }
 
     return (
-      <div>
+      <div id="results">
+        <Home />
+        <Owl />
         { !loaded && (<div style={loadingStyle} />)}
         { loaded && !details && (
           <div>
-            <div className="container">
+            <div id="result-wrapper" className="container">
+              <h1 className="written align-center animated bounceInUp">
+                Boeken
+              </h1>
               <ResultsList
                 resultsList={resultsList}
                 renderedList={renderedList}
@@ -109,10 +93,6 @@ class ResultsContainer extends React.Component {
             <div className="action-button-container fixed-bottom align-center">
               <RefreshButton
                 doRefresh={doRefresh}
-              />
-              <RestartButton
-                doReset={doReset}
-                goPathHome={goPathHome}
               />
             </div>
             <p>{loading ? 'Loading...' : ''}</p>

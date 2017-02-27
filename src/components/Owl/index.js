@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 
 const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
+
 export default class Owl extends Component {
   constructor(props) {
     super(props)
@@ -9,7 +10,11 @@ export default class Owl extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => { this.winkEyes() }, randomIntFromInterval(500, 1000))
+    this.timeout = setTimeout(() => { this.winkEyes() }, randomIntFromInterval(500, 1000))
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout)
   }
 
   openEyes() {
@@ -26,13 +31,13 @@ export default class Owl extends Component {
 
   winkEyes() {
     this.closeEyes()
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.openEyes()
-      setTimeout(() => {
+      this.timeout = setTimeout(() => {
         this.closeEyes()
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
           this.openEyes()
-          setTimeout(() => {
+          this.timeout = setTimeout(() => {
             this.winkEyes()
           }, randomIntFromInterval(3000, 6000))
         }, randomIntFromInterval(175, 350))

@@ -6,8 +6,7 @@ import AgeList from './AgesList'
 
 import * as userActions from 'redux/modules/user'
 import {exitAnimation} from './animations'
-import {Owl} from '../../components'
-
+import {Owl, Home} from '../../components'
 
 @connect(
   state => ({
@@ -42,6 +41,7 @@ class Ages extends React.Component {
     return (
       <div id="age">
         <Owl />
+        <Home />
         <div ref="contentWrap">
           <div className="row">
           {
