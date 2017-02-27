@@ -18,4 +18,30 @@
     font-weight: bold;
     text-shadow: 3px 0 3px #000;
   }
+
+  #logo-cultuurconnect {
+    background: url('/theme/bieblo-forrest/1080/logo_cultuurconnect.png') center center no-repeat;
+    height: 90px;
+    width: 90px;
+    position: absolute;
+    bottom: 0;
+    right: 290px;
+  }
+
+  #logo-de-krook {
+    background: url('/theme/bieblo-forrest/1080/logo_de_krook.png') center center no-repeat;
+    height: 90px;
+    width: 90px;
+    position: absolute;
+    bottom: 0;
+    right: 190px;
+  }
+  #logo-vlaamse-gemeenschap{
+    background: url('/theme/bieblo-forrest/1080/logo_vlaamse_gemeenschap.jpg') center center no-repeat;
+    height: 90px;
+    width: 170px;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+  }
 }

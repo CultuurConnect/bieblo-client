@@ -10,6 +10,7 @@ const Theme = ({theme}) => {
       id={`theme-${theme.id}`}
       className="theme"
     >
+      <div className="label">{theme.label}</div>
       <div className="image" style={imgStyleObj} />
     </div>
   )

@@ -55,7 +55,7 @@ export default class Home extends Component {
         <div id="home-disclaimer">
           <p>Bieblo is een realisatie van</p>
           <div id="logo-cultuurconnect" />
-          <div id="logo-dekrook" />
+          <div id="logo-de-krook" />
           <div id="logo-vlaamse-gemeenschap" />
         </div>
       </div>
