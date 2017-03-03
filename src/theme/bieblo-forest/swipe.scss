@@ -19,6 +19,15 @@
         margin-left: 292px;
         left: initial;
         right: initial;
+        font-size: 30px;
+
+        &.liked,
+        &.disliked {
+          .label {
+            font-size: 8px;
+            margin-top: -4px;
+          }
+        }
 
         &.disliked {
           margin-left: 80px;
@@ -51,7 +60,7 @@
         }
 
         .image {
-          width: 75%;
+          width: 60%;
           margin: 15px auto;
           height: 100%;
         }
@@ -63,6 +72,7 @@
           right: 0;
           font-family: 'luckiest_guyregular', cursive;
           text-shadow: 2px 2px 2px #333;
+          font-size: inherit;
           color: #f9f337;
         }
       }

@@ -20,11 +20,38 @@
         background-color: #fbbd65;
         border: 6px solid #fbbd65
       }
+
+      .book-title,
+      .book-summary,
+      .book-location-text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #FFF;
+        text-shadow: 0 0 3px #333;
+      }
+
+      .book-title {
+        font-size: 40px;
+      }
+
+
+      .book-summary {
+        margin-bottom: 30px;
+      }
+    }
+
+    img.book {
+      border: 6px solid #fbbd65;
     }
 
     .owl {
       bottom: -50px;
       right: 50px;
     }
+  }
+
+
+  .book-location-text {
+    font-size: 30px;
   }
 }

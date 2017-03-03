@@ -7,7 +7,7 @@ const RestartButton = ({doRemoveDetails}) => {
 
   return (
     <div className="action-button red icon animated bounceInUp" onClick={onClick}>
-      <i className="fa fa-sign-out" /> Terug naar resultaten
+      <i className="fa fa-sign-out" /> Terug
     </div>
   )
 }

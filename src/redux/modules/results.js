@@ -6,6 +6,8 @@ const SET_DETAILS = 'bieblo/results/SET_DETAILS'
 const REMOVE_DETAILS = 'bieblo/results/REMOVE_DETAILS'
 const REFRESH = 'bieblo/results/REFRESH'
 const SET_RENDERED_LIST = 'bieblo/results/SET_RENDERED_LIST'
+const SHOW_LOCATION_POPUP = 'bieblo/results/SHOW_LOCATION_POPUP'
+const HIDE_LOCATION_POPUP = 'bieblo/results/HIDE_LOCATION_POPUP'
 
 const initialState = {
   loaded: false,
@@ -14,6 +16,7 @@ const initialState = {
   data: [],
   details: null,
   renderedList: null,
+  locationPopupDisplayed: false,
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -70,6 +73,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         renderedList: action.renderedList,
       }
+    case SHOW_LOCATION_POPUP:
+      return {
+        ...state,
+        locationPopupDisplayed: true,
+      }
+    case HIDE_LOCATION_POPUP:
+      return {
+        ...state,
+        locationPopupDisplayed: false,
+      }
     default:
       return state
   }
@@ -97,6 +110,14 @@ const setRenderedList = (renderedList) => ({
   renderedList,
 })
 
+const showLocationPopup = () => ({
+  type: SHOW_LOCATION_POPUP,
+})
+
+const hideLocationPopup = () => ({
+  type: HIDE_LOCATION_POPUP,
+})
+
 export default reducer
 
 export {
@@ -106,4 +127,6 @@ export {
   removeDetails,
   refresh,
   setRenderedList,
+  showLocationPopup,
+  hideLocationPopup,
 }

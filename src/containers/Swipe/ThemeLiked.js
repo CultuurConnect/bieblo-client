@@ -10,6 +10,7 @@ const ThemeLiked = ({theme}) => {
       id={`theme-${theme.id}`}
       className="theme liked"
     >
+      <div className="label">{theme.label}</div>
       <div className="image" style={imgStyleObj} />
     </div>
   )

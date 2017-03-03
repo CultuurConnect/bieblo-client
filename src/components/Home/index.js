@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Popup} from '../index'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
@@ -38,8 +39,14 @@ export default class Home extends Component {
     goPathHome: React.PropTypes.func,
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {displayConfirmDialog: false}
+  }
+
   render() {
     const { doResetUser, doResetBieblo, doResetHallo, doResetResults, goPathHome } = this.props
+    const { displayConfirmDialog } = this.state
 
     const doReset = () => {
       doResetUser()
@@ -49,8 +56,34 @@ export default class Home extends Component {
       goPathHome()
     }
 
+    const askConfirm = () => {
+      this.setState({
+        displayConfirmDialog: true,
+      })
+    }
+
+    const closeConfirm = () => {
+      this.setState({
+        displayConfirmDialog: false,
+      })
+    }
+
     return (
-      <div id="home-btn" className="action-button" onClick={doReset} />
+      <div>
+        <div id="home-btn" className="action-button" onClick={askConfirm} />
+        {
+          displayConfirmDialog &&
+          <Popup
+            confirmButton
+            confirmButtonText={'Ja'}
+            onConfirmButtonClick={doReset}
+            closeButton
+            onCloseButtonClick={closeConfirm}
+          >
+            <p className="big-text align-center title-text-style">Ben je zeker dat je bieblo wil stoppen?</p>
+          </Popup>
+        }
+      </div>
     )
   }
 }

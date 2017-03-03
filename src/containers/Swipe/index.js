@@ -68,16 +68,29 @@ const handlePanStart = (ev) => {
 const handlePanLeft = (distance, themes) => {
   const nextTeamElement = getNextThemeElement(themes)
   if (nextTeamElement) {
-    const SWIDTH = 1080
+    // const SWIDTH = 1080
     const WIDTH = 496
     const HEIGHT = 644
 
+    const FONT_SIZE_DEFAULT = 30
+    const FONT_SIZE_MIN = 8
+
     const perc = distance < (WIDTH / 2) ? (distance / (WIDTH / 2)) * 100 : 100
+
+    const fontSizeDiff = (FONT_SIZE_DEFAULT - FONT_SIZE_MIN) * (perc / 100)
+    const fontSize = FONT_SIZE_DEFAULT - fontSizeDiff
+
+    const MARGIN_LEFT_DEFAULT = 292
+    const MARGIN_LEFT_MAX = 80
+
+    const marginLeftDiff = (MARGIN_LEFT_DEFAULT - MARGIN_LEFT_MAX) * (perc / 100)
+    const marginLeft = MARGIN_LEFT_DEFAULT - marginLeftDiff
+
 
     // const pLeft = 50 - (perc / 2)
     // const left = pLeft >= 20 ? pLeft : 20
-    const pMarginLeft = (SWIDTH / 2) - (WIDTH / 2) - ((WIDTH / 2) * (perc / 100) * 2)
-    const marginLeft = pMarginLeft >= 80 ? pMarginLeft : 80
+    // const pMarginLeft = (SWIDTH / 2) - (WIDTH / 2) - ((WIDTH / 2) * (perc / 100) * 2)
+    // const marginLeft = pMarginLeft >= 80 ? pMarginLeft : 80
 
     const top = 30 * (perc / 100)
 
@@ -90,6 +103,7 @@ const handlePanLeft = (distance, themes) => {
     nextTeamElement.style.width = `${width}px`
     nextTeamElement.style.height = `${height}px`
     nextTeamElement.style.marginLeft = `${marginLeft}px`
+    nextTeamElement.style.fontSize = `${fontSize}px`
 
     // if (distance <= (250 / 2)) {
     //   nextTeamElement.style.transform = null
@@ -111,14 +125,28 @@ const handlePanLeft = (distance, themes) => {
 const handlePanRight = (distance, themes) => {
   const nextTeamElement = getNextThemeElement(themes)
   if (nextTeamElement) {
-    const SWIDTH = 1080
+    // const SWIDTH = 1080
     const WIDTH = 496
     const HEIGHT = 644
 
+    const FONT_SIZE_DEFAULT = 30
+    const FONT_SIZE_MIN = 8
+
     const perc = distance < (WIDTH / 2) ? (distance / (WIDTH / 2)) * 100 : 100
 
-    const pMarginLeft = ((SWIDTH / 2) - (WIDTH / 2)) + ((WIDTH) * (perc / 75))
-    const marginLeft = pMarginLeft <= 870 ? pMarginLeft : 870
+    const fontSizeDiff = (FONT_SIZE_DEFAULT - FONT_SIZE_MIN) * (perc / 100)
+    const fontSize = FONT_SIZE_DEFAULT - fontSizeDiff
+
+
+    const MARGIN_LEFT_DEFAULT = 292
+    const MARGIN_LEFT_MAX = 870
+
+    const marginLeftDiff = (MARGIN_LEFT_DEFAULT - MARGIN_LEFT_MAX) * (perc / 100)
+    const marginLeft = MARGIN_LEFT_DEFAULT - marginLeftDiff
+
+    //
+    // const pMarginLeft = ((SWIDTH / 2) - (WIDTH / 2)) + ((WIDTH) * (perc / 75))
+    // const marginLeft = pMarginLeft <= 870 ? pMarginLeft : 870
 
     const top = 30 * (perc / 100)
 
@@ -129,6 +157,7 @@ const handlePanRight = (distance, themes) => {
     nextTeamElement.style.width = `${width}px`
     nextTeamElement.style.height = `${height}px`
     nextTeamElement.style.marginLeft = `${marginLeft}px`
+    nextTeamElement.style.fontSize = `${fontSize}px`
   }
 }
 

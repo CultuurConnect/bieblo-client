@@ -46,25 +46,36 @@
       position: absolute;
       bottom: 40px;
     }
+  }
 
-    .action-button {
-      font-family: 'luckiest_guyregular', cursive;
-      text-shadow: 2px 2px 2px #333;
-      color: #f9f337;
-      font-size: 48px;
-      cursor: pointer;
-      width: 245px;
-      height: 95px;
-      background: url('/theme/bieblo-forrest/1080/btn_bg.png');
-      background-color: transparent;
-      border-bottom: none;
-      padding: 10px 0 0 0;
+  .action-button {
+    font-family: 'luckiest_guyregular', cursive;
+    text-shadow: 2px 2px 2px #333;
+    color: #f9f337;
+    font-size: 48px;
+    cursor: pointer;
+    width: 245px;
+    height: 95px;
+    background: url('/theme/bieblo-forrest/1080/btn_bg.png');
+    background-color: transparent;
+    border-bottom: none;
+    padding: 10px 0 0 0;
+    text-align: center;
 
-      &.large {
-        width: 400px;
-        font-size: 36px;
-        background: url('/theme/bieblo-forrest/1080/btn_large_bg.png');
-      }
+    &.icon {
+      font-size: 38px;
+    }
+
+    &.large {
+      width: 400px;
+      font-size: 32px;
+      text-align: center;
+      padding-top: 26px;
+      background: url('/theme/bieblo-forrest/1080/btn_large_bg.png');
+    }
+
+    &.large.icon {
+      padding-top: 18px;
     }
   }
 
@@ -106,6 +117,13 @@
     }
   }
 
+  .title-text-style {
+    font-family: 'luckiest_guyregular', cursive;
+    text-shadow: 2px 2px 2px #333;
+    color: #f9f337;
+    font-size: 36px;
+  }
+
   #home-btn {
     position: absolute;
     top: 0;
@@ -116,5 +134,81 @@
     z-index: 100;
     border: none;
     cursor: pointer;
+  }
+}
+
+#popup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  top: 0;
+
+  #popup-bg,
+  #popup-content {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    color: #FFF;
+    text-shadow: 2px 2px 3px #333;
+  }
+
+  #popup-bg {
+    background: url('/theme/bieblo-forrest/1080/bg_blur.jpg') no-repeat center center;
+  }
+
+  #popup-confirm-btn {
+    position: absolute;
+    top: 600px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+
+  #popup-close-btn {
+    background: url('/theme/bieblo-forrest/1080/close_btn.png') no-repeat center center;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+  }
+
+  &.popup-size-default {
+    #popup-content {
+      background: url('/theme/bieblo-forrest/1080/popup_default_bg.png') no-repeat center center;
+      #popup-content-inner{
+        position: absolute;
+        width: 500px;
+        height: 300px;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: 290px auto 60px auto;
+        padding: 50px;
+      }
+    }
+
+    #popup-close-btn {
+      left: 230px;
+      top: 205px;
+    }
+  }
+
+  &.popup-size-large {
+    #popup-content {
+      background: url('/theme/bieblo-forrest/1080/popup_large_bg.png') no-repeat center center;
+      #popup-content-inner {
+        width: 705px;
+        margin: 355px auto 0 auto;
+        padding: 50px;
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
+    }
+
+    #popup-close-btn {
+      left: 165px;
+      top: 275px;
+    }
   }
 }
