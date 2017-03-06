@@ -33,7 +33,6 @@ const reducer = (state = initialState, action = {}) => {
         loading: false,
         loaded: true,
         data: [
-          ...state.data,
           ...action.result,
         ],
         error: null,
