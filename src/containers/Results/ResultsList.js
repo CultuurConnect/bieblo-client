@@ -10,12 +10,14 @@ const getResultsRowsFromResults = (resultsList) => {
 
   while (resultsListCopy.length && resultsRows.length < MAX_ROWS) {
     const resultRow = []
+    let i = 0
     while (resultsListCopy.length && resultRow.length < MAX_ITEMS_ROW) {
-      const randomIdx = Math.floor(Math.random() * resultsListCopy.length)
+      // const randomIdx = Math.floor(Math.random() * resultsListCopy.length)
       resultRow.push({
-        ...resultsListCopy[randomIdx],
+        ...resultsListCopy[i],
       })
-      resultsListCopy.splice(randomIdx, 1)
+      i += 1
+      // resultsListCopy.splice(randomIdx, 1)
     }
     resultsRows.push(resultRow)
   }
