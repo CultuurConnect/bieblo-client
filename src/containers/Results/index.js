@@ -76,8 +76,6 @@ class ResultsContainer extends React.Component {
       doLoad,
       ageGroup,
       themesLiked,
-      renderedList,
-      doSetRenderedList,
       doShowDetails,
       doRemoveDetails,
       resultsList,
@@ -117,8 +115,6 @@ class ResultsContainer extends React.Component {
               </h1>
               <ResultsList
                 resultsList={resultsList}
-                renderedList={renderedList}
-                doSetRenderedList={doSetRenderedList}
                 doShowDetails={doShowDetails}
               />
             </div>

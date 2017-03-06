@@ -7,10 +7,9 @@ const MAX_ITEMS_ROW = 4
 const getResultsRowsFromResults = (resultsList) => {
   const resultsRows = []
   const resultsListCopy = [...resultsList]
-
+  let i = 0
   while (resultsListCopy.length && resultsRows.length < MAX_ROWS) {
     const resultRow = []
-    let i = 0
     while (resultsListCopy.length && resultRow.length < MAX_ITEMS_ROW) {
       // const randomIdx = Math.floor(Math.random() * resultsListCopy.length)
       resultRow.push({
@@ -25,12 +24,8 @@ const getResultsRowsFromResults = (resultsList) => {
   return resultsRows
 }
 
-const ResultsList = ({resultsList, renderedList, doSetRenderedList, doShowDetails}) => {
-  const resultsRows = renderedList || getResultsRowsFromResults(resultsList)
-
-  if (!renderedList) {
-    doSetRenderedList(resultsRows)
-  }
+const ResultsList = ({resultsList, renderedList, doShowDetails}) => {
+  const resultsRows = getResultsRowsFromResults(resultsList)
 
   return (
     <div className="results-list">
