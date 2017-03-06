@@ -24,6 +24,7 @@ const reducer = (state = initialState, action = {}) => {
     case LOAD:
       return {
         ...state,
+        loaded: false,
         loading: true,
       }
     case LOAD_SUCCESS:
