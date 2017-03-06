@@ -73,7 +73,9 @@ class ResultsContainer extends React.Component {
       loaded,
       loading,
       details,
-      doRefresh,
+      doLoad,
+      ageGroup,
+      themesLiked,
       renderedList,
       doSetRenderedList,
       doShowDetails,
@@ -98,6 +100,10 @@ class ResultsContainer extends React.Component {
       textAlign: 'center',
     }
 
+    const clickRefresh = () => {
+      doLoad(ageGroup, themesLiked)
+    }
+
     return (
       <div id="results">
         <Home />
@@ -119,7 +125,7 @@ class ResultsContainer extends React.Component {
 
             <div className="action-button-container fixed-bottom align-center">
               <RefreshButton
-                doRefresh={doRefresh}
+                doRefresh={clickRefresh}
               />
             </div>
             <p>{loading ? 'Loading...' : ''}</p>
