@@ -32,7 +32,7 @@ const initialState = {
     [
       {id: 1, cls: 'new', img: '/swipe/Humor.jpg', label: 'Humor'},
       {id: 2, cls: 'new', img: '/swipe/Magie.jpg', label: 'Magie'},
-      {id: 3, cls: 'new', img: '/swipe/Detective.jpg', label: 'Detectieve'},
+      {id: 3, cls: 'new', img: '/swipe/Detective.jpg', label: 'Detective'},
       {id: 4, cls: 'new', img: '/swipe/Sport.jpg', label: 'Sport'},
       {id: 5, cls: 'new', img: '/swipe/Dieren.jpg', label: 'Dieren'},
       {id: 6, cls: 'new', img: '/swipe/AndereCulturen.jpg', label: 'Andere Culturen'},
