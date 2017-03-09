@@ -6,7 +6,7 @@ const homeAnimationState = {
 const animationStart = (element) => {
   if (homeAnimationState.running) {
     element.innerHTML = 'Op zoek naar een boek?'
-    element.className = 'font-mono align-center animated fadeIn'
+    element.className = 'align-center animated fadeIn'
     element.setAttribute('data-step', 1)
     element.setAttribute('data-timeout', 3000)
   }
@@ -15,7 +15,7 @@ const animationStart = (element) => {
 const animationNoIdea = (element) => {
   if (homeAnimationState.running) {
     element.innerHTML = 'Maar geen idee wat te kiezen?'
-    element.className = 'font-mono align-center animated fadeIn'
+    element.className = 'align-center animated fadeIn'
     element.setAttribute('data-step', 3)
     element.setAttribute('data-timeout', 3000)
   }
@@ -24,7 +24,7 @@ const animationNoIdea = (element) => {
 const animationUseBieblo = (element) => {
   if (homeAnimationState.running) {
     element.innerHTML = 'Swipe met bieblo!'
-    element.className = 'font-mono align-center animated slideInLeft'
+    element.className = 'align-center animated slideInLeft'
     element.setAttribute('data-step', 5)
     element.setAttribute('data-timeout', 200)
   }
@@ -32,7 +32,7 @@ const animationUseBieblo = (element) => {
 
 const animationWobbleBieblo = (element) => {
   if (homeAnimationState.running) {
-    element.className = 'font-mono align-center animated wobble'
+    element.className = 'align-center animated wobble'
     element.setAttribute('data-step', 6)
     element.setAttribute('data-timeout', 1500)
   }
@@ -41,7 +41,7 @@ const animationWobbleBieblo = (element) => {
 const animationAndDiscover = (element) => {
   if (homeAnimationState.running) {
     element.innerHTML = 'En ontdek nieuwe boeken!'
-    element.className = 'font-mono align-center animated tada'
+    element.className = 'align-center animated tada'
     element.setAttribute('data-step', 8)
     element.setAttribute('data-timeout', 1500)
   }
@@ -49,7 +49,7 @@ const animationAndDiscover = (element) => {
 
 const hideAnimation = (element, nextStep, className) => {
   if (homeAnimationState.running) {
-    element.className = 'font-mono align-center animated ' + (className || 'fadeOut')
+    element.className = 'align-center animated ' + (className || 'fadeOut')
     element.setAttribute('data-step', nextStep)
     element.setAttribute('data-timeout', 200)
   }
@@ -119,7 +119,7 @@ const startAnimation = ({logo, startButton, animation, owl, startAnimationEndedC
   )
   logo.className = 'written align-center animated bounceOutUp'
   startButton.className += ' animated bounceOut'
-  animation.className = 'font-mono align-center animated bounceOut'
+  animation.className = 'align-center animated bounceOut'
 }
 
 export {
