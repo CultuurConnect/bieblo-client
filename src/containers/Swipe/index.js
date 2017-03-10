@@ -62,6 +62,8 @@ const handlePanStart = (ev) => {
   if (validStartPan(centerX)) {
     panState.started = true
     panState.offset = panState.x.center - centerX
+  } else {
+    panState.started = false
   }
 }
 
@@ -195,22 +197,23 @@ const savePanResult = (themes, themesLiked, themesDisliked, setThemes, goPathRes
 }
 
 const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPathResults) => {
-  const nextTeamElement = getNextThemeElement(themes)
-  if (nextTeamElement) {
-    // const style = require('./style.scss')
-    const {x} = ev.center
-    const {center} = panState.x
-    const xPosition = x + panState.offset
-    const direction = (xPosition < center) ? 'dislike' : 'like'
-    const distance = direction === 'dislike' ? center - xPosition : xPosition - center
-    const percentage = distance < 250 ? (distance / 250) * 100 : 100
+  if (panState.started) {
+    const nextTeamElement = getNextThemeElement(themes)
+    if (nextTeamElement) {
+      // const style = require('./style.scss')
+      const { x } = ev.center
+      const { center } = panState.x
+      const xPosition = x + panState.offset
+      const direction = (xPosition < center) ? 'dislike' : 'like'
+      const distance = direction === 'dislike' ? center - xPosition : xPosition - center
+      const percentage = distance < 250 ? (distance / 250) * 100 : 100
 
-    if (percentage >= 60) {
-      savePanResult(themes, themesLiked, themesDisliked, setThemes, goPathResults, direction)
-    }
+      if ( percentage >= 60 ) {
+        savePanResult( themes, themesLiked, themesDisliked, setThemes, goPathResults, direction )
+      }
 
-    /**
-     if (percentage <= 25) {
+      /**
+       if (percentage <= 25) {
       // To the left
       nextTeamElement.className = style.illustration + ' ' + style.left
       illustrationEl.style = null
@@ -238,16 +241,17 @@ const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPath
       const newIllustrations = changeIllustrationCls(illustrationObj.id, 'new', illustrations)
       updateIllustrations(newIllustrations)
     }
-     }
-     panState.started = false
-     */
+       }
+       panState.started = false
+       */
+    }
   }
 }
 
 const initWindow = () => {
   const innerW = window.innerWidth
   const centerX = innerW / 2
-  const containerW = 250
+  const containerW = 496
   panState.container = {
     ...panState.container,
     width: containerW,

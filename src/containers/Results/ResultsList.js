@@ -24,7 +24,7 @@ const getResultsRowsFromResults = (resultsList) => {
   return resultsRows
 }
 
-const ResultsList = ({resultsList, renderedList, doShowDetails}) => {
+const ResultsList = ({resultsList, doShowDetails}) => {
   const resultsRows = getResultsRowsFromResults(resultsList)
 
   return (
