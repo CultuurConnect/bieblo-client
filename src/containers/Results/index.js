@@ -163,7 +163,7 @@ class ResultsContainer extends React.Component {
           >
             <div className="row">
               <div className="col-md-4 book-location-image">
-                <img className="animated bounceInDown book" src={changeCoverSizeToLarge(details.cover)} />
+                <img className="book" src={changeCoverSizeToLarge(details.cover)} />
               </div>
               <div className="col-md-8 book-location-text">
                   <p>{details.subloc}</p>
