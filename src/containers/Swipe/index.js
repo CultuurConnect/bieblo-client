@@ -10,7 +10,7 @@ import Theme from './Theme'
 import ThemeDisliked from './ThemeDisliked'
 import ThemeLiked from './ThemeLiked'
 
-const MAX_SWIPE_LIKE = 5
+const MAX_SWIPE_LIKE = 3
 
 const panState = {
   started: false,
