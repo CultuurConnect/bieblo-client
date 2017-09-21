@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import Hammer from 'react-hammerjs'
 import {Owl, Home} from '../../components'
+import AppTimeout from '../App/AppTimeout'
 
 import * as biebloActions from 'redux/modules/bieblo'
 
@@ -374,6 +375,7 @@ class Swipe extends React.Component {
             <Home />
           </div>
         </Hammer>
+        <AppTimeout />
       </div>
     )
   }

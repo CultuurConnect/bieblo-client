@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Owl, Popup, Home } from '../../components'
+import AppTimeout from '../App/AppTimeout'
 
 import {
   load,
@@ -124,7 +125,7 @@ class ResultsContainer extends React.Component {
                 doRefresh={clickRefresh}
               />
             </div>
-            <p>{loading ? 'Loading...' : ''}</p>
+            <p>{loading ? 'Loading...' : <AppTimeout />}</p>
           </div>
         )}
         { loaded && details && (
@@ -153,6 +154,7 @@ class ResultsContainer extends React.Component {
                 doRemoveDetails={doRemoveDetails}
               />
             </div>
+            <AppTimeout />
           </div>
         )}
         {locationPopupDisplayed && (

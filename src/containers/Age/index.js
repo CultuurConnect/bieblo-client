@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { push } from 'react-router-redux'
 
 import AgeList from './AgesList'
+import AppTimeout from '../App/AppTimeout'
 
 import * as userActions from 'redux/modules/user'
 import {exitAnimation} from './animations'
@@ -64,6 +65,7 @@ class Ages extends React.Component {
             onAgeButtonClick={onAgeButtonClick}
           />
         </div>
+        <AppTimeout maxIntervals={1} />
       </div>
     )
   }

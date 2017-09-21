@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
+import AppTimeout from '../App/AppTimeout'
 
 // import { Shake } from 'reshake'
 
@@ -74,6 +75,7 @@ class halloComponent extends React.Component {
             <i className="fa fa-play-circle" /> Verder!
           </div>
         </div>
+        <AppTimeout />
       </div>
     )
   }
