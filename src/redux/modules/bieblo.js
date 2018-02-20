@@ -19,10 +19,13 @@ const initialState = {
   age: null,
   swiping: false,
   libraries: [
-     {id: 1, naam: 'De krook', logo: 'https://pbs.twimg.com/profile_images/378800000041290325/01c214021ddc7ebc543087ce660e9fa3_400x400.png'},
+    {
+      id: 1,
+      naam: 'De krook',
+      logo: 'https://pbs.twimg.com/profile_images/378800000041290325/01c214021ddc7ebc543087ce660e9fa3_400x400.png',
+    },
   ],
   ages: [
-    {id: 1, label: '7'},
     {id: 2, label: '8'},
     {id: 3, label: '9'},
     {id: 4, label: '10'},
@@ -30,15 +33,14 @@ const initialState = {
   ],
   themes: shuffle(
     [
-      {id: 1, cls: 'new', img: '/swipe/Humor.jpg', label: 'Humor'},
+      {id: 1, cls: 'new', img: '/swipe/Humor.jpg', label: 'Grappige verhalen'},
       {id: 2, cls: 'new', img: '/swipe/Magie.jpg', label: 'Magie'},
-      {id: 3, cls: 'new', img: '/swipe/Detective.jpg', label: 'Detective'},
+      {id: 3, cls: 'new', img: '/swipe/Detective.jpg', label: 'Spannende verhalen'},
       {id: 4, cls: 'new', img: '/swipe/Sport.jpg', label: 'Sport'},
       {id: 5, cls: 'new', img: '/swipe/Dieren.jpg', label: 'Dieren'},
-      {id: 6, cls: 'new', img: '/swipe/AndereCulturen.jpg', label: 'Andere Culturen'},
+      {id: 6, cls: 'new', img: '/swipe/AndereLanden.jpg', label: 'Andere landen'},
       {id: 7, cls: 'new', img: '/swipe/Liefde.jpg', label: 'Liefde'},
-      {id: 8, cls: 'new', img: '/swipe/OorlogHistorisch.jpg', label: 'Oorlog Historisch'},
-      {id: 9, cls: 'new', img: '/swipe/Prijsboeken.jpg', label: 'Prijsboeken'},
+      {id: 8, cls: 'new', img: '/swipe/Geschiedenis.jpg', label: 'Geschiedenis'},
       {id: 10, cls: 'new', img: '/swipe/Vriendschap.jpg', label: 'Vriendschap'},
     ]
   ).map(
@@ -75,7 +77,7 @@ const reducer = (state = initialState, action = {}) => {
   }
 }
 
-const reset = () => ({ type: RESET })
+const reset = () => ({type: RESET})
 
 const setThemes = (themes, themesLiked, themesDisliked) => ({
   type: SET_THEMES,

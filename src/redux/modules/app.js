@@ -33,10 +33,9 @@ const reducer = (state = initialState, action = {}) => {
   }
 }
 
-
 const isLoaded = (globalState) => globalState.app && globalState.app.loaded
 
-const loaded = () => ({ type: LOAD_SUCCESS })
+const loaded = () => ({type: LOAD_SUCCESS})
 
 const load = () => ({
   types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],

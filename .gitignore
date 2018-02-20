@@ -7,3 +7,6 @@ webpack-stats.json
 npm-debug.log
 *.swp
 .env
+
+# Build directory
+#static/dist

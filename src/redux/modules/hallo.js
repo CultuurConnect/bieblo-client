@@ -21,9 +21,9 @@ const reducer = (state = initialState, action = {}) => {
   }
 }
 
-const reset = () => ({ type: RESET })
+const reset = () => ({type: RESET})
 
-const setRendered = () => ({ type: SET_RENDERED })
+const setRendered = () => ({type: SET_RENDERED})
 
 export default reducer
 

@@ -52,7 +52,7 @@ export default class Html extends Component {
             <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
             <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
             <script src={assets.javascript.main} charSet="UTF-8"/>
-            <script src="/theme/bieblo-forrest/pixies.js"/>
+            <script src="/theme/bieblo-forest/pixies.js"/>
           </div>
         </body>
       </html>
