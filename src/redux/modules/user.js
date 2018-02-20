@@ -6,7 +6,6 @@ const initialState = {
   username: null,
   ageGroup: null,
   agesList: [
-    {id: 1, age: 7, label: 7, ageGroup: 1},
     {id: 2, age: 8, label: 8, ageGroup: 1},
     {id: 3, age: 9, label: 9, ageGroup: 2},
     {id: 4, age: 10, label: 10, ageGroup: 2},
@@ -35,11 +34,11 @@ const reducer = (state = initialState, action = {}) => {
   }
 }
 
-const reset = () => ({ type: RESET })
+const reset = () => ({type: RESET})
 
-const setUsername = (username) => ({ type: SET_USERNAME, username })
+const setUsername = (username) => ({type: SET_USERNAME, username})
 
-const setAgeGroup = (ageGroup) => ({ type: SET_AGE_GROUP, ageGroup })
+const setAgeGroup = (ageGroup) => ({type: SET_AGE_GROUP, ageGroup})
 
 export default reducer
 
