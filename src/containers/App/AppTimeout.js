@@ -8,8 +8,8 @@ import {reset as resetBieblo} from '../../redux/modules/bieblo'
 import {reset as resetHallo} from '../../redux/modules/hallo'
 import {reset as resetResults} from '../../redux/modules/results'
 
-// 30 seconds
-const CHECK_INTERVAL = 1000 * 30
+// 1 minute
+const CHECK_INTERVAL = 1000 * 60
 
 @connect(
   state => ({
@@ -131,8 +131,6 @@ export default class AppTimeout extends Component {
             confirmButton
             confirmButtonText={'Ja'}
             onConfirmButtonClick={closeConfirm}
-            closeButton
-            onCloseButtonClick={closeConfirm}
           >
             <p className="big-text align-center title-text-style">Ben je daar nog?</p>
           </Popup>
