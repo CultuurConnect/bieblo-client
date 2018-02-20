@@ -80,7 +80,7 @@ export default class Home extends Component {
             closeButton
             onCloseButtonClick={closeConfirm}
           >
-            <p className="big-text align-center title-text-style">Ben je zeker dat je bieblo wil stoppen?</p>
+            <p className="big-text align-center title-text-style">Ben je zeker dat je opnieuw wil beginnen?</p>
           </Popup>
         }
       </div>
