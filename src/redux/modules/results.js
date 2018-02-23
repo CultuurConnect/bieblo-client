@@ -96,9 +96,9 @@ const setDetails = (details) => ({ type: SET_DETAILS, details })
 
 const removeDetails = () => ({ type: REMOVE_DETAILS })
 
-const load = (ageGroup, likes) => {
+const load = (ageGroup, themes) => {
   let query = `ageGroup=${ageGroup}&`
-  likes.forEach((like) => query += 'likes[]=' + like.id + '&')
+  themes.forEach((like) => query += 'likes[]=' + like.id + '&')
   return ({
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/results/books?' + query),

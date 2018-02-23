@@ -33,7 +33,7 @@ const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small
     locationPopupDisplayed: state.results.locationPopupDisplayed,
   }),
   {
-    doLoad: (ageGroup, themesLiked) => load(ageGroup, themesLiked),
+    doLoad: (ageGroup, themes) => load(ageGroup, themes),
     doShowDetails: (result) => setDetails(result),
     doRemoveDetails: () => removeDetails(),
     doRefresh: () => refresh(),
@@ -49,6 +49,7 @@ class ResultsContainer extends React.Component {
     loading: React.PropTypes.bool,
     ageGroup: React.PropTypes.number,
     themesLiked: React.PropTypes.arrayOf(React.PropTypes.object),
+    themesDisliked: React.PropTypes.arrayOf(React.PropTypes.object),
     resultsList: React.PropTypes.arrayOf(React.PropTypes.object),
     renderedList: React.PropTypes.array,
     doSetRenderedList: React.PropTypes.func,
@@ -65,8 +66,8 @@ class ResultsContainer extends React.Component {
   }
 
   componentDidMount() {
-    const {doLoad, ageGroup, themesLiked} = this.props
-    doLoad(ageGroup, themesLiked)
+    const {doLoad, ageGroup, themesLiked, themesDisliked} = this.props
+    doLoad(ageGroup, themesLiked.length > 0 ? themesLiked : themesDisliked)
   }
 
   render() {
@@ -77,6 +78,7 @@ class ResultsContainer extends React.Component {
       doLoad,
       ageGroup,
       themesLiked,
+      themesDisliked,
       doShowDetails,
       doRemoveDetails,
       resultsList,
@@ -100,7 +102,7 @@ class ResultsContainer extends React.Component {
     }
 
     const clickRefresh = () => {
-      doLoad(ageGroup, themesLiked)
+      doLoad(ageGroup, themesLiked.length > 0 ? themesLiked : themesDisliked)
     }
 
     return (
