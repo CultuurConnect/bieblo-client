@@ -41,5 +41,3 @@ DevTools are not enabled during production.
 npm run build
 npm run start
 ```
-
-– Jonas Verhaert, [@JonasVerhaert](https://twitter.com/JonasVerhaert)

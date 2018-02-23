@@ -17,6 +17,7 @@ const CHECK_INTERVAL = 1000 * 60
     ageGroup: state.user.ageGroup,
     rendered: state.hallo.rendered,
     themesLiked: state.bieblo.themesLiked,
+    themesDisliked: state.bieblo.themesDisliked,
     loaded: state.results.loaded,
     loading: state.results.loading,
     resultsList: state.results.data,

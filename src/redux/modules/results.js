@@ -96,7 +96,7 @@ const setDetails = (details) => ({ type: SET_DETAILS, details })
 
 const removeDetails = () => ({ type: REMOVE_DETAILS })
 
-const load = (ageGroup, themes) => {
+const load = (ageGroup, themes = []) => {
   let query = `ageGroup=${ageGroup}&`
   themes.forEach((like) => query += 'likes[]=' + like.id + '&')
   return ({

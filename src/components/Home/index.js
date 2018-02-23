@@ -14,6 +14,7 @@ import {reset as resetResults} from '../../redux/modules/results'
     ageGroup: state.user.ageGroup,
     rendered: state.hallo.rendered,
     themesLiked: state.bieblo.themesLiked,
+    themesDisliked: state.bieblo.themesDisliked,
     loaded: state.results.loaded,
     loading: state.results.loading,
     resultsList: state.results.data,
