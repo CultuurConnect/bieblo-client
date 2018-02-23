@@ -66,8 +66,6 @@ if (config.apiPort) {
   });
 
   io.on('connection', (socket) => {
-    socket.emit('news', {msg: `'Hello World!' from server`});
-
     socket.on('history', () => {
       for (let index = 0; index < bufferSize; index++) {
         const msgNo = (messageIndex + index) % bufferSize;
@@ -87,7 +85,7 @@ if (config.apiPort) {
 
     socket.on('regions', (data) => {
       io.emit('regions', {
-        test: 'werkt'
+        test: ''
       });
     });
   });
