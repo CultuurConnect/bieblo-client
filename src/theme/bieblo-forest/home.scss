@@ -1,5 +1,12 @@
 #content {
   #home {
+    .home-help-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 0 0 3px #333;
+    }
+
     .owl {
       left: 15px;
       top: 108px;
@@ -14,15 +21,21 @@
     }
 
     #home-disclaimer {
+      font-family: "Source Sans Pro", sans-serif;
       position: absolute;
       bottom: 5px;
       text-align: center;
       display: block;
       width: 100%;
-      color: #bebebe;
-      font-size: 18px;
-      font-weight: bold;
-      text-shadow: 3px 0 3px #000;
+      color: #ffffff;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 20px;
+      text-shadow: 0 0 3px #333;
+
+      p {
+        margin-bottom: 0;
+      }
     }
 
     #logo-cultuurconnect {
@@ -31,7 +44,7 @@
       width: 90px;
       position: absolute;
       bottom: 0;
-      right: 290px;
+      right: 320px;
     }
 
     #logo-de-krook {
@@ -40,15 +53,16 @@
       width: 90px;
       position: absolute;
       bottom: 0;
-      right: 190px;
+      right: 230px;
     }
+
     #logo-vlaamse-gemeenschap {
-      background: url('/theme/bieblo-forest/1080/logo_vlaamse_gemeenschap.jpg') center center no-repeat;
+      background: url('/theme/bieblo-forest/1080/logo_vlaanderen.png') center center no-repeat;
       height: 90px;
-      width: 170px;
+      width: 230px;
       position: absolute;
       bottom: 0;
-      right: 20px;
+      right: 0;
     }
   }
 }

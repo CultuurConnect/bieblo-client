@@ -1,17 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Owl, Popup, Home } from '../../components'
+import { Home, Owl } from '../../components'
 import AppTimeout from '../App/AppTimeout'
 
-import {
-  load,
-  setDetails,
-  removeDetails,
-  refresh,
-  setRenderedList,
-  showLocationPopup,
-  hideLocationPopup,
-} from '../../redux/modules/results'
+import { load, refresh, removeDetails, setDetails, setRenderedList } from '../../redux/modules/results'
 
 import BackButton from './BackButton'
 import RefreshButton from './RefreshButton'
@@ -31,7 +23,6 @@ const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small
     resultsList: state.results.data,
     details: state.results.details,
     renderedList: state.results.renderedList,
-    locationPopupDisplayed: state.results.locationPopupDisplayed,
   }),
   {
     doLoad: (ageGroup, themes) => load(ageGroup, themes),
@@ -39,8 +30,6 @@ const changeCoverSizeToLarge = (cover) => cover ? cover.replace('coversize=small
     doRemoveDetails: () => removeDetails(),
     doRefresh: () => refresh(),
     doSetRenderedList: (renderedList) => setRenderedList(renderedList),
-    doShowLocationPopup: () => showLocationPopup(),
-    doHideLocationPopup: () => hideLocationPopup(),
   }
 )
 
@@ -61,17 +50,14 @@ class ResultsContainer extends React.Component {
     doShowDetails: React.PropTypes.func,
     doRemoveDetails: React.PropTypes.func,
     details: React.PropTypes.object,
-    locationPopupDisplayed: React.PropTypes.bool,
-    doShowLocationPopup: React.PropTypes.func,
-    doHideLocationPopup: React.PropTypes.func,
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const {doLoad, ageGroup, themesLiked, themesDisliked} = this.props
     doLoad(ageGroup, themesLiked.length > 0 ? themesLiked : themesDisliked)
   }
 
-  render() {
+  render () {
     const {
       loaded,
       loading,
@@ -83,9 +69,6 @@ class ResultsContainer extends React.Component {
       doShowDetails,
       doRemoveDetails,
       resultsList,
-      locationPopupDisplayed,
-      doShowLocationPopup,
-      doHideLocationPopup,
     } = this.props
 
     const loadingSVG = require('./../App/loading.svg')
@@ -108,15 +91,16 @@ class ResultsContainer extends React.Component {
 
     return (
       <div id="results">
-        <Home />
-        <Owl />
-        { !loaded && (<div style={loadingStyle} />)}
-        { loaded && !details && (
+        <Home/>
+        <Owl/>
+        {!loaded && (<div style={loadingStyle}/>)}
+        {loaded && !details && (
           <div>
             <div id="result-wrapper" className="container">
               <h1 className="written align-center animated bounceInUp">
                 Boeken
               </h1>
+              <h4 className="results-help-text">Klik op een boek voor meer info</h4>
               <ResultsList
                 resultsList={resultsList}
                 doShowDetails={doShowDetails}
@@ -128,54 +112,37 @@ class ResultsContainer extends React.Component {
                 doRefresh={clickRefresh}
               />
             </div>
-            <p>{loading ? 'Loading...' : <AppTimeout />}</p>
+            <p>{loading ? 'Loading...' : <AppTimeout/>}</p>
           </div>
         )}
-        { loaded && details && (
+        {loaded && details && (
           <div>
-              <div id="result-wrapper" className="container">
-              <h1 className="written align-center animated bounceInUp">
-                Boek details
-              </h1>
+            <div id="result-wrapper" className="container">
               <div className="row">
                 <div className="col-md-4">
-                  <img className="animated bounceInDown book" src={changeCoverSizeToLarge(details.cover)} />
+                  <img className="animated bounceInDown book" src={changeCoverSizeToLarge(details.cover)}/>
                 </div>
                 <div className="col-md-8">
                   <div className="animated lightSpeedIn">
                     <h3 className="book-title animated">{details.title}</h3>
                     <p className="book-summary">{details.summary}</p>
-                    <div className="action-button large" onClick={doShowLocationPopup}>
-                      Waar vind ik dit boek?
+                    <br/>
+                    <h4 className="book-location">Je vindt dit boek hier</h4>
+                    <div className="col-md-8 book-location-text">
+                      <p>{details.subloc}</p>
+                      <p>{details.shelfmark}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="action-button-container align-center" style={{marginTop: 30}}>
+            <div className="action-button-container back-button-container" style={{marginTop: 30}}>
               <BackButton
                 doRemoveDetails={doRemoveDetails}
               />
             </div>
-            <AppTimeout />
+            <AppTimeout/>
           </div>
-        )}
-        {locationPopupDisplayed && (
-          <Popup
-            size="large"
-            closeButton
-            onCloseButtonClick={doHideLocationPopup}
-          >
-            <div className="row">
-              <div className="col-md-4 book-location-image">
-                <img className="book" src={changeCoverSizeToLarge(details.cover)} />
-              </div>
-              <div className="col-md-8 book-location-text">
-                  <p>{details.subloc}</p>
-                  <p>{details.shelfmark}</p>
-              </div>
-            </div>
-          </Popup>
         )}
       </div>
     )

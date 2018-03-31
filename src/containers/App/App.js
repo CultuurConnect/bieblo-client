@@ -19,29 +19,28 @@ export default class App extends Component {
     pushAppLoaded: PropTypes.func.isRequired,
     loading: PropTypes.bool,
     path: PropTypes.string,
-  };
+  }
 
-  componentDidMount() {
-    const { pushAppLoaded } = this.props
+  componentDidMount () {
+    const {pushAppLoaded} = this.props
     const setAppLoaded = () => { pushAppLoaded() }
     setTimeout(setAppLoaded, 100)
   }
 
-  render() {
+  render () {
     const {children, loading} = this.props
     require('./App.scss')
     return (
       <div>
         <Helmet {...config.app.head}/>
-        { !loading && children ?
-          (
+        {!loading && children ? (
             <div id="app-content">
               {children}
             </div>
           )
-          : <AppLoading />
+          : <AppLoading/>
         }
-        { !loading && <AppBackground /> }
+        {!loading && <AppBackground/>}
       </div>
     )
   }

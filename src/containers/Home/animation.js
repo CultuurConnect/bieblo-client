@@ -5,7 +5,7 @@ const homeAnimationState = {
 
 const animationStart = (element) => {
   if (homeAnimationState.running) {
-    element.innerHTML = 'Op zoek naar een boek?'
+    element.innerHTML = 'Zoek je een boek? Bieblo kan je helpen!'
     element.className = 'align-center animated fadeIn'
     element.setAttribute('data-step', 1)
     element.setAttribute('data-timeout', 3000)

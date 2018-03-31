@@ -9,9 +9,12 @@
 
 #app-wrap {
   width: 1080px;
-  height: 3000px;
-  background: #65691c;
+  height: 100vh;
   margin: 0 auto;
+  background-color: #65691c;
+  background-image: url('/theme/bieblo-forest/1080/filler.jpg');
+  background-position: center bottom;
+  background-repeat: repeat-x;
 }
 
 #appBackground {
@@ -30,7 +33,13 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: url('/theme/bieblo-forest/1080/background.jpg') no-repeat center center;
+  background: url('/theme/bieblo-forest/1080/background-alt.jpg') no-repeat center center;
+
+  @media only screen and (min-height: 1200px) {
+    & {
+      bottom: 10%;
+    }
+  }
 
   #app-content {
     width: 1080px;
@@ -45,6 +54,11 @@
     &.fixed-bottom {
       position: absolute;
       bottom: 40px;
+    }
+
+    &.back-button-container {
+      text-align: left;
+      padding-left: 160px;
     }
   }
 
@@ -175,7 +189,7 @@
   &.popup-size-default {
     #popup-content {
       background: url('/theme/bieblo-forest/1080/popup_default_bg.png') no-repeat center center;
-      #popup-content-inner{
+      #popup-content-inner {
         position: absolute;
         width: 500px;
         height: 300px;

@@ -43,7 +43,7 @@ export default class Home extends Component {
         <Helmet title="Home"/>
         <Owl ref="owl"/>
         <div id="home-logo">
-          <h2 className="align-center animated fadeIn" ref="animation">Op zoek naar een boek?</h2>
+          <h2 className="align-center animated fadeIn" ref="animation">Zoek je een boek? Bieblo kan je helpen!</h2>
           <img id="logo" ref="logo" className="animated flipInX" src="/theme/bieblo-forest/1080/logo.png"/>
         </div>
         <div id="home-button-container" className="action-button-container fixed-bottom align-center">

@@ -1,8 +1,8 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {push} from 'react-router-redux'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import Hammer from 'react-hammerjs'
-import {Owl, Home} from '../../components'
+import { Home, Owl } from '../../components'
 import AppTimeout from '../App/AppTimeout'
 
 import * as biebloActions from 'redux/modules/bieblo'
@@ -89,7 +89,6 @@ const handlePanLeft = (distance, themes) => {
     const marginLeftDiff = (MARGIN_LEFT_DEFAULT - MARGIN_LEFT_MAX) * (perc / 100)
     const marginLeft = MARGIN_LEFT_DEFAULT - marginLeftDiff
 
-
     // const pLeft = 50 - (perc / 2)
     // const left = pLeft >= 20 ? pLeft : 20
     // const pMarginLeft = (SWIDTH / 2) - (WIDTH / 2) - ((WIDTH / 2) * (perc / 100) * 2)
@@ -140,7 +139,6 @@ const handlePanRight = (distance, themes) => {
     const fontSizeDiff = (FONT_SIZE_DEFAULT - FONT_SIZE_MIN) * (perc / 100)
     const fontSize = FONT_SIZE_DEFAULT - fontSizeDiff
 
-
     const MARGIN_LEFT_DEFAULT = 292
     const MARGIN_LEFT_MAX = 870
 
@@ -166,8 +164,8 @@ const handlePanRight = (distance, themes) => {
 
 const handlePanMove = (ev, themes) => {
   if (panState.started) {
-    const { center } = panState.x
-    const { x } = ev.center
+    const {center} = panState.x
+    const {x} = ev.center
     const xPosition = x + panState.offset
     if (xPosition < center) {
       // To The left
@@ -202,15 +200,15 @@ const handlePanEnd = (ev, themes, themesLiked, themesDisliked, setThemes, goPath
     const nextTeamElement = getNextThemeElement(themes)
     if (nextTeamElement) {
       // const style = require('./style.scss')
-      const { x } = ev.center
-      const { center } = panState.x
+      const {x} = ev.center
+      const {center} = panState.x
       const xPosition = x + panState.offset
       const direction = (xPosition < center) ? 'dislike' : 'like'
       const distance = direction === 'dislike' ? center - xPosition : xPosition - center
       const percentage = distance < 250 ? (distance / 250) * 100 : 100
 
-      if ( percentage >= 60 ) {
-        savePanResult( themes, themesLiked, themesDisliked, setThemes, goPathResults, direction )
+      if (percentage >= 60) {
+        savePanResult(themes, themesLiked, themesDisliked, setThemes, goPathResults, direction)
       }
 
       /**
@@ -325,14 +323,14 @@ class Swipe extends React.Component {
     setSwiping: React.PropTypes.func.isRequired,
     setThemes: React.PropTypes.func.isRequired,
     goPathResults: React.PropTypes.func.isRequired,
-  };
+  }
 
-  componentDidMount() {
+  componentDidMount () {
     const wrapper = this.refs.biebloWrapper
     initWindow(wrapper)
   }
 
-  render() {
+  render () {
     const style = require('./style.scss')
     const {themes, themesLiked, themesDisliked, setThemes, goPathResults, swiping, setSwiping} = this.props
 
@@ -360,10 +358,10 @@ class Swipe extends React.Component {
           onPanEnd={(ev) => handlePanEnd(ev, themes, themesLiked, themesDisliked, setThemes, goPathResults)}
         >
           <div ref="biebloWrapper" className="swipe-wrapper">
-            <div className={style.background} />
-            { themes && themes.map(theme => <Theme key={`theme-${theme.id}`} theme={theme} />) }
-            { themesDisliked && themesDisliked.map(theme => <ThemeDisliked key={`theme-${theme.id}`} theme={theme} />) }
-            { themesLiked && themesLiked.map(theme => <ThemeLiked key={`theme-${theme.id}`} theme={theme} />) }
+            <div className={style.background}/>
+            {themes && themes.map(theme => <Theme key={`theme-${theme.id}`} theme={theme}/>)}
+            {themesDisliked && themesDisliked.map(theme => <ThemeDisliked key={`theme-${theme.id}`} theme={theme}/>)}
+            {themesLiked && themesLiked.map(theme => <ThemeLiked key={`theme-${theme.id}`} theme={theme}/>)}
 
             <div id="btn-like" ref="startButton" className={classNameBtn} onClick={clickLike}>
               wel leuk
@@ -371,11 +369,11 @@ class Swipe extends React.Component {
             <div id="btn-dislike" className={classNameBtn} onClick={clickDislike}>
               niet leuk
             </div>
-            <Owl />
-            <Home />
+            <Owl/>
+            <Home/>
           </div>
         </Hammer>
-        <AppTimeout />
+        <AppTimeout/>
       </div>
     )
   }

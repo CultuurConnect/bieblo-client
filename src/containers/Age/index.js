@@ -1,13 +1,11 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-
 import AgeList from './AgesList'
 import AppTimeout from '../App/AppTimeout'
-
 import * as userActions from 'redux/modules/user'
-import {exitAnimation} from './animations'
-import {Owl, Home} from '../../components'
+import { exitAnimation } from './animations'
+import { Home, Owl } from '../../components'
 
 @connect(
   state => ({
@@ -22,14 +20,15 @@ import {Owl, Home} from '../../components'
 
 class Ages extends React.Component {
   static propTypes = {
-    username: React.PropTypes.string,
-    agesList: React.PropTypes.arrayOf(React.PropTypes.object),
-    setAgeGroup: React.PropTypes.func,
-    openPathIllustrations: React.PropTypes.func,
+    username: PropTypes.string,
+    agesList: PropTypes.arrayOf(PropTypes.object),
+    setAgeGroup: PropTypes.func,
+    openPathIllustrations: PropTypes.func,
   }
 
-  render() {
+  render () {
     const {username, agesList, setAgeGroup, openPathIllustrations} = this.props
+
     const onAgeButtonClick = (age) => {
       const {ageGroup} = age
       setAgeGroup(ageGroup)
@@ -41,23 +40,23 @@ class Ages extends React.Component {
 
     return (
       <div id="age">
-        <Owl />
-        <Home />
+        <Owl/>
+        <Home/>
         <div ref="contentWrap">
           <div className="row">
-          {
-            username
-              ? (
-                <h1 className="written align-center animated bounceInUp">
-                  Hoe oud ben je, <span className="uppercaseFirst">{username}?</span>
-                </h1>
-              )
-              : (
-                <h1 className="written align-center animated bounceInUp">
-                  Hoe oud ben je?
-                </h1>
-              )
-          }
+            {
+              username
+                ? (
+                  <h1 className="written align-center animated bounceInUp">
+                    Hoe oud ben je, <span className="uppercaseFirst">{username}?</span>
+                  </h1>
+                )
+                : (
+                  <h1 className="written align-center animated bounceInUp">
+                    Hoe oud ben je?
+                  </h1>
+                )
+            }
           </div>
           <AgeList
             style={{marginTop: 10}}
@@ -65,7 +64,7 @@ class Ages extends React.Component {
             onAgeButtonClick={onAgeButtonClick}
           />
         </div>
-        <AppTimeout maxIntervals={1} />
+        <AppTimeout maxIntervals={1}/>
       </div>
     )
   }
