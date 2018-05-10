@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom/server'
 import serialize from 'serialize-javascript'
 import Helmet from 'react-helmet'
+import { hotjar } from 'react-hotjar'
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
@@ -23,6 +24,9 @@ export default class Html extends Component {
     const {assets, component, store} = this.props
     const content = component ? ReactDOM.renderToString(component) : ''
     const head = Helmet.rewind()
+
+    // Hotjar
+    hotjar.initialize(862733, 6)
 
     return (
       <html lang="en-us">
@@ -54,18 +58,6 @@ export default class Html extends Component {
         <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
         <script src={assets.javascript.main} charSet="UTF-8"/>
         <script src="/theme/bieblo-forest/pixies.js"/>
-
-        {/* Hotjar Tracking Code for https://bit.ly/2r4xbGm */}
-        <script>
-          (function(h,o,t,j,a,r){
-          h.hj = h.hj || function () {(h.hj.q = h.hj.q || []).push(arguments)};
-          h._hjSettings={hjid:862733,hjsv:6};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
       </div>
       </body>
       </html>
