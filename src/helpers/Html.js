@@ -26,7 +26,7 @@ export default class Html extends Component {
     const head = Helmet.rewind()
 
     // Hotjar
-    // hotjar.initialize(862733, 6)
+    hotjar.initialize(862733, 6)
 
     return (
       <html lang="en-us">
