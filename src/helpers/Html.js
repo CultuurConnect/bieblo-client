@@ -27,7 +27,7 @@ export default class Html extends Component {
 
     // Hotjar
     if(typeof window !== 'undefined') {
-      hotjar.initialize(862733, 6)
+      hotjar.initialize(881386, 6)
     }
 
     return (
