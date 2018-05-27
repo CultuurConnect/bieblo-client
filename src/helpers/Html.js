@@ -20,15 +20,6 @@ export default class Html extends Component {
     store: PropTypes.object,
   }
 
-  constructor (props) {
-    super(props)
-
-    // Hotjar
-    if (typeof window !== 'undefined') {
-      hotjar.initialize(895097, 6)
-    }
-  }
-
   render () {
     const {assets, component, store} = this.props
     const content = component ? ReactDOM.renderToString(component) : ''
@@ -60,6 +51,7 @@ export default class Html extends Component {
       </head>
       <body>
       <div id="app-wrap">
+        <script src="/hotjar.js"/>
         <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
         <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
         <script src={assets.javascript.main} charSet="UTF-8"/>
