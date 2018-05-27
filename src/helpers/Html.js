@@ -54,7 +54,7 @@ export default class Html extends Component {
         {Object.keys(assets.styles).length === 0 ? <style
           dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js') + require('../containers/App/App.scss')._style}}/> : null}
 
-        <!-- Hotjar Tracking Code for 35.233.117.233 -->
+        {/* Hotjar Tracking Code for 35.233.117.233 */}
         <script>
           (function(h,o,t,j,a,r){
           h.hj = h.hj || function () {(h.hj.q = h.hj.q || []).push(arguments)};
