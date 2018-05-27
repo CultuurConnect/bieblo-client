@@ -2,12 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom/server'
 import serialize from 'serialize-javascript'
 import Helmet from 'react-helmet'
-import { hotjar } from 'react-hotjar'
-
-// Hotjar
-if (typeof window !== 'undefined') {
-  hotjar.initialize(895097, 6)
-}
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
