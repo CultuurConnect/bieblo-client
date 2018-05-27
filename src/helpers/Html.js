@@ -5,7 +5,9 @@ import Helmet from 'react-helmet'
 import { hotjar } from 'react-hotjar'
 
 // Hotjar
-hotjar.initialize(895097, 6)
+if (typeof window !== 'undefined') {
+  hotjar.initialize(895097, 6)
+}
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
