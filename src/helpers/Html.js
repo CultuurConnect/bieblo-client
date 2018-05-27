@@ -4,6 +4,9 @@ import serialize from 'serialize-javascript'
 import Helmet from 'react-helmet'
 import { hotjar } from 'react-hotjar'
 
+// Hotjar
+hotjar.initialize(895097, 6)
+
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
  * Used in server-side code only to wrap the string output of the
