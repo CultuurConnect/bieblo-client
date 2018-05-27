@@ -20,11 +20,12 @@ export default class Html extends Component {
     store: PropTypes.object,
   }
 
-  componentDidMount () {
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      const script = document.createElement('script')
-      script.src = '/hotjar.js'
-      document.head.appendChild(script)
+  constructor (props) {
+    super(props)
+
+    // Hotjar
+    if (typeof window !== 'undefined') {
+      hotjar.initialize(895097, 6)
     }
   }
 
@@ -32,11 +33,6 @@ export default class Html extends Component {
     const {assets, component, store} = this.props
     const content = component ? ReactDOM.renderToString(component) : ''
     const head = Helmet.rewind()
-
-    // Hotjar
-    // if (typeof window !== 'undefined') {
-    //   hotjar.initialize(895097, 6)
-    // }
 
     return (
       <html lang="en-us">
