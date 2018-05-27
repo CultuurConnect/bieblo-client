@@ -25,11 +25,6 @@ export default class Html extends Component {
     const content = component ? ReactDOM.renderToString(component) : ''
     const head = Helmet.rewind()
 
-    // Hotjar
-    if(typeof window !== 'undefined') {
-      hotjar.initialize(881386, 6)
-    }
-
     return (
       <html lang="en-us">
       <head>
@@ -53,6 +48,21 @@ export default class Html extends Component {
         {/* ideally one could also include here the style for the current page (Home.scss, About.scss, etc) */}
         {Object.keys(assets.styles).length === 0 ? <style
           dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js') + require('../containers/App/App.scss')._style}}/> : null}
+
+        {/* Hotjar */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+            '(function(h,o,t,j,a,r){\n' +
+            '  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};\n' +
+            '  h._hjSettings={hjid:881386,hjsv:6};\n' +
+            '  a=o.getElementsByTagName(\'head\')[0];\n' +
+            '  r=o.createElement(\'script\');r.async=1;\n' +
+            '  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\n' +
+            '  a.appendChild(r);\n' +
+            '})(window,document,\'https://static.hotjar.com/c/hotjar-\',\'.js?sv=\');'
+          }}
+        />
       </head>
       <body>
       <div id="app-wrap">
