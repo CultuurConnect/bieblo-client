@@ -49,7 +49,20 @@ export default class Html extends Component {
         {Object.keys(assets.styles).length === 0 ? <style
           dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js') + require('../containers/App/App.scss')._style}}/> : null}
 
-        <script src="/hotjar.js"/>
+        {/* Hotjar */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+            '(function(h,o,t,j,a,r){\n' +
+            '    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};\n' +
+            '    h._hjSettings={hjid:895097,hjsv:6};\n' +
+            '    a=o.getElementsByTagName(\'head\')[0];\n' +
+            '    r=o.createElement(\'script\');r.async=1;\n' +
+            '    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\n' +
+            '    a.appendChild(r);\n' +
+            '})(window,document,\'https://static.hotjar.com/c/hotjar-\',\'.js?sv=\');'
+          }}
+        />
       </head>
       <body>
       <div id="app-wrap">
