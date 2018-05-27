@@ -118,6 +118,9 @@ class ResultsContainer extends React.Component {
         {loaded && details && (
           <div>
             <div id="result-wrapper" className="container">
+              <h1 className="written align-center animated bounceInUp">
+                Info
+              </h1>
               <div className="row">
                 <div className="col-md-4">
                   <img className="animated bounceInDown book" src={changeCoverSizeToLarge(details.cover)}/>
@@ -127,7 +130,7 @@ class ResultsContainer extends React.Component {
                     <h3 className="book-title animated">{details.title}</h3>
                     <p className="book-summary">{details.summary}</p>
                     <br/>
-                    <h4 className="book-location">Je vindt dit boek hier</h4>
+                    <h4 className="book-location">Dit boek staat hier in de bib</h4>
                     <div className="col-md-8 book-location-text">
                       <p>{details.subloc}</p>
                       <p>{details.shelfmark}</p>
